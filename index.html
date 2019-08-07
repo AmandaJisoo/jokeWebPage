@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="styles.css" rel="stylesheet">
+    <title>Random Joke</title>
+</head>
+<body>
+    <div class="topnav">
+        <a href="#home">Home</a>
+        <a href="#contact" class="link">Framework</a>
+        <a href="#project" class="link">About Project</a>
+    </div>  
+      <!-- <div class ="home-display-joke"> -->
+
+    <div class= "joke-option">
+        <legend>Choose a Joke Type:</legend>
+        <input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" />
+        <label for="radio-choice-1">Joke Type 1</label>
+
+        <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+        <label for="radio-choice-2">Joke Type 2</label>
+
+        <input type="radio" name="radio-choice" id="radio-choice-3" value="choice-3"  />
+        <label for="radio-choice-3">Joke Type 1</label>
+
+        <input type="radio" name="radio-choice" id="radio-choice-4" value="choice-4"  />
+        <label for="radio-choice-4">joke Type 4</label>
+    </div>
+
+    <ul class ="home-display-joke">
+        <div class="home-joke" id="one"></div>
+        <div class="home-joke" id="two"></div>
+        <div class="home-joke" id="three"></div>
+        <div class="home-joke" id="four"></div>
+    </ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
