@@ -39,15 +39,21 @@ ul {
 .home-display-joke {
     display: flex;
     flex-wrap: wrap;
-    align-content: space-between;
+    overflow: hidden;
+    /* align-content: space-between; */
+    justify-self: center;
+    align-self: center;
 }
 
 .home-joke {
     border-style:solid;
     color: black;
-    padding: 4vw;
-    margin-top: 30px;
-    margin : 4vw;
+    padding:3%;
+    margin: 2vw;
+    width: 100;30px;
+    width: 100vw;
+    /* margin : 4vw; */
+    /* width: 20%; */
 }
 
 .joke-option {
@@ -58,7 +64,6 @@ ul {
     /* justify-content:center; */
     padding-inline-start: 45vw;
 }
-
 
 @media screen and (max-width: 600px) {
     .topnav a:not(:first-child) {display: none;}
