@@ -1,9 +1,9 @@
 const ICNDB_URl = "http://api.icndb.com/jokes/random"; 
-const DONALD_TRUMP = "https://icanhazdadjoke.com/";
-const 
+const DADDY_URL = "https://icanhazdadjoke.com/";
+const APPSOPT_URL = "https://official-joke-api.appspot.com/";
 //only fetching one joke 
 
-function fetchOne() {
+function icndbFetch() {
     fetch(ICNDB_URl)
     .then(checkStatus)
     .then(resp => resp.json())
@@ -13,35 +13,33 @@ function fetchOne() {
     .catch(console.error);
 }
 
-let fetchData = {
-    method: 'GET',
-    Headers: {
-        'Content-Type': 'application/json',
-        "Accept" : 'application/json',
-        cache: 'no-cache',
-        mode: 'cors'
-        }
-}
-
-function fetchTwo() {
-    fetch(DONALD_TRUMP,  {
+function daddyFetch() {
+    fetch(DADDY_URL,  {
         method: 'GET',
         headers: {
-            "Accept" : 'application/json',
+            'Accept' : 'application/json'
         }
     })
     .then(checkStatus)
-    .then(resp => {
-        console.log(resp);
-        return resp.json();
-    })
+    .then(resp => resp.json())
     .then((response) => {
         console.log(response);
-        trumpAppendToPage(response, "two");
+        daddyAppendToPage(response, "two");
     })
     .catch(console.error);
 }
  
+function appSpotJoke() {
+    let appRandomSpotUrl = APPSOPT_URL + "random_joke";
+    fetch(appRandomSpotUrl)
+    .then(checkStatus)
+    .then(resp => resp.json())
+    .then((response) => {
+        console.log(response);
+        appSpotRandomToPage(response, "three");
+    })
+    .catch(console.error);
+}
 
 function checkStatus(response) {
     console.log(response);
@@ -53,21 +51,24 @@ function checkStatus(response) {
 }
 
 function icndbAppendToPage(response, name) {
-    console.log("inside");
     let homeJokePost = response.value.joke;
-    // $("#id").append(homeJokePost);
+    document.getElementById(name).append(homeJokePost);
+}
+
+function daddyAppendToPage(response, name) {
+    let homeJokePost = response.joke;
+    document.getElementById(name).append(homeJokePost);
+}
+
+function appSpotRandomToPage(response, name) {
+    let homeJokePost = response.setup;
+    homeJokePost += response.punchline;
     document.getElementById(name).append(homeJokePost);
 }
 
 function init() {
-    fetchOne();
-    fetchTwo();
-    // fetchThree();
-    // fetchFour();
-}
-
-function trumpAppendToPage(response, name) {
-    let homeJokePost = response.joke;
-    document.getElementById(name).append(homeJokePost);
+    icndbFetch();
+    daddyFetch();
+    appSpotJoke();
 }
 init();
