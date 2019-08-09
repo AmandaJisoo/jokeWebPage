@@ -61,6 +61,11 @@ ul {
     padding-inline-start: 15%;
 }
 
+.submit-btn {
+    width: 20vw;
+    margin-top: 10px;
+}
+
 .background {
     background-image: url("img/pink-strip.svg");
     width: 80vw;
