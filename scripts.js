@@ -13,9 +13,14 @@ $("#assport").click(renderHomePage);
 
 function renderHomePage(event) {
     console.log(event);
+    //empty out joke here
+    //only fetch when the dictionary does not contain the key
     $(".home-display-joke").remove("chosen-joke");
     if (event.target.id === "icndb") {
         icndbFetch();
+    } else if (event.target.id === "daddy") {
+        console.log("inside");
+        daddyFetch();
     }
 }
 
@@ -46,8 +51,29 @@ function icndbAppendToPage(response) {
     }
 }
 
-function daddyAppendToPage(reponse) {
+function daddyFetch() {
+    let daddyJokeList = DADDY_URL + "search?page=10&limit=30"
+    fetch(daddyJokeList,  {
+        method: 'GET',
+        headers: {
+            'Accept' : 'application/json'
+        }
+    })
+    .then(checkStatus)
+    .then(resp => resp.json())
+    .then((response) => {
+        console.log(response);
+        daddyAppendToPage(response);
+    })
+    .catch(console.error);
+}
+ 
 
+function daddyAppendToPage(response) {
+    console.log(response);
+    for (let jokeToPost of icndbList) {
+        // let joke = jo
+    }
 }
 
 // function removeCurrentJokes() {
@@ -65,22 +91,6 @@ function daddyAppendToPage(reponse) {
 //     .catch(console.error);
 // }
 
-// function daddyFetch() {
-//     fetch(DADDY_URL,  {
-//         method: 'GET',
-//         headers: {
-//             'Accept' : 'application/json'
-//         }
-//     })
-//     .then(checkStatus)
-//     .then(resp => resp.json())
-//     .then((response) => {
-//         console.log(response);
-//         daddyAppendToPage(response, "two");
-//     })
-//     .catch(console.error);
-// }
- 
 // function appSpotJoke() {
 //     let appRandomSpotUrl = APPSOPT_URL + "random_joke";
 //     fetch(appRandomSpotUrl)
