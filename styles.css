@@ -38,10 +38,11 @@ ul {
 
 .home-display-joke {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
     overflow: hidden;
     /* align-content: space-between; */
-    justify-self: center;
+    /* justify-self: center; */
     align-self: center;
 }
 
@@ -66,6 +67,19 @@ ul {
     margin-top: 10px;
 }
 
+/* dynamic */
+.jokeItem {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+p {
+    width: 80vw;
+    border:1px solid black; ;
+    padding: 5px;
+    margin: 3px 3px;
+}
 .background {
     background-image: url("img/pink-strip.svg");
     width: 80vw;

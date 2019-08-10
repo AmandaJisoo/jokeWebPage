@@ -1,4 +1,7 @@
 "use strict";
+//TODo: create a dictionary and only fetch when it is first 
+//time clicked
+
 let state = {icndbList : null};
 const ICNDB_URl = "http://api.icndb.com/jokes/random/"; 
 const DADDY_URL = "https://icanhazdadjoke.com/";
@@ -8,8 +11,12 @@ $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
 
-function renderHomePage() {
-    icndbFetch();
+function renderHomePage(event) {
+    console.log(event);
+    $(".home-display-joke").remove("chosen-joke");
+    if (event.target.id === "icndb") {
+        icndbFetch();
+    }
 }
 
 
@@ -33,16 +40,19 @@ function icndbAppendToPage(response) {
     console.log(icndbList);
     for (let jokeToPost of icndbList) {
         console.log(jokeToPost);
-        let jokeItem = $("<div class=icndb-joke></div>");
-        $(jokeItem).append("<p>" + jokeToPost + "<p>");
+        let jokeItem = $("<div class=chosen-joke></div>");
+        $(jokeItem).append("<p>" + jokeToPost + "</p>");
         $(".home-display-joke").append(jokeItem);
     }
-    // $(".home-display-joke").append(homeJokePost);
 }
 
-function removeCurrentJokes() {
-    $(".home-display-joke").detach();
+function daddyAppendToPage(reponse) {
+
 }
+
+// function removeCurrentJokes() {
+//     $(".home-display-joke").detach();
+// }
 
 // <div class="joke-list">Something</div> 
 // function icndbFetch() {
