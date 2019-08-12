@@ -1,32 +1,69 @@
 "use strict";
-//TODo: create a dictionary and only fetch when it is first 
-//time clicked
+//TODO: DO I want the page to show the same content? when going back to prev page?
 
-let state = {icndbList : null};
+let state = {icndbList : null, daddyList: null, curPage: 1, numOfJoke: 30, curJokeLink : null, firstNumOfPageNav: 1};
 const ICNDB_URl = "http://api.icndb.com/jokes/random/"; 
 const DADDY_URL = "https://icanhazdadjoke.com/";
-const APPSOPT_URL = "https://official-joke-api.appspot.com/";
+// const APPSOPT_URL = "https://official-joke-api.appspot.com/";
 let icndbList = [];
+let daddyList = [];
+let numOfJoke = 30;
+let curJokeLink = null;
+let curPage = 1;
+let firstNumOfPageNav = 1;
+$(".pagination").hide();
 $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
+$(".page-item").click(loadNextPage);
+$("#next-btn").click(changePageNum);
 
 function renderHomePage(event) {
     console.log(event);
-    //empty out joke here
-    //only fetch when the dictionary does not contain the key
-    $(".home-display-joke").remove("chosen-joke");
+    $(".pagination").show()
+    $(".chosen-joke").remove();
     if (event.target.id === "icndb") {
+        console.log("ic inside");
+        curJokeLink = "icndb";
         icndbFetch();
     } else if (event.target.id === "daddy") {
-        console.log("inside");
+        curJokeLink = "daddy";
         daddyFetch();
+    } 
+}
+
+function loadNextPage(event) {
+    console.log("inside of load next page");
+    $(".chosen-joke").remove();
+    curPage++;
+    if (curJokeLink === "icndb") {
+        icndbFetch();
+    } else if (curJokeLink === "daddy") {
+        console.log("daddy inside");
+        daddyFetch();
+    } else {
+        //third link
     }
 }
 
+function changePageNum() {
+    //increase the current page count
+    //ex: 1,2,3 present and click next-btn
+    //then show 4,5,6
+    curPage++;
+    firstNumOfPageNav += 3;
+    $(".page-btn").remove();
+     for (let i = 1; i <= 3; i++) {
+        let pageBtn = $("<li class='page-item page-btn' id='" + firstNumOfPageNav + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
+       $(".pagination").append(pageBtn);
+    }
+
+    // let pageItem = 
+
+}
 
 function icndbFetch() {
-    let mutipleJokeRequest = ICNDB_URl + "100";
+    let mutipleJokeRequest = ICNDB_URl + numOfJoke;
     fetch(mutipleJokeRequest)
     .then(checkStatus)
     .then(resp => resp.json())
@@ -39,12 +76,7 @@ function icndbFetch() {
 function icndbAppendToPage(response) {
     //  let homeJokePost = response.value.joke;
     for (let key of response) {
-        let joke = key.joke;
-        icndbList.push(joke);
-    }
-    console.log(icndbList);
-    for (let jokeToPost of icndbList) {
-        console.log(jokeToPost);
+        let jokeToPost = key.joke;
         let jokeItem = $("<div class=chosen-joke></div>");
         $(jokeItem).append("<p>" + jokeToPost + "</p>");
         $(".home-display-joke").append(jokeItem);
@@ -52,7 +84,7 @@ function icndbAppendToPage(response) {
 }
 
 function daddyFetch() {
-    let daddyJokeList = DADDY_URL + "search?page=10&limit=30"
+    let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
     fetch(daddyJokeList,  {
         method: 'GET',
         headers: {
@@ -62,19 +94,31 @@ function daddyFetch() {
     .then(checkStatus)
     .then(resp => resp.json())
     .then((response) => {
-        console.log(response);
         daddyAppendToPage(response);
     })
     .catch(console.error);
 }
  
-
+//attaching the daddyjoke to the page dynamically
 function daddyAppendToPage(response) {
-    console.log(response);
-    for (let jokeToPost of icndbList) {
-        // let joke = jo
+    console.log(response.results);
+    for (let key of response.results) {
+        let jokeToPost = key.joke;
+        let jokeItem = $("<div class=chosen-joke></div>");
+        $(jokeItem).append("<p>" + jokeToPost + "</p>");
+        $(".home-display-joke").append(jokeItem);
     }
 }
+
+
+
+// function appendDaddyToHTML(list) {
+//     for (let jokeToPost of icndbList) {
+//         let jokeItem = $("<div class=chosen-joke></div>");
+//         $(jokeItem).append("<p>" + jokeToPost + "</p>");
+//         $(".home-display-joke").append(jokeItem);
+//     }   
+// }
 
 // function removeCurrentJokes() {
 //     $(".home-display-joke").detach();
@@ -111,27 +155,6 @@ function checkStatus(response) {
     //reponse object
     return response;
 }
-
-
-
-// function daddyAppendToPage(response, name) {
-//     let homeJokePost = response.joke;
-//     $("#" + name).append(homeJokePost);
-// }
-
-// function appSpotRandomToPage(response, name) {
-//     let homeJokePost = response.setup;
-//     homeJokePost += response.punchline;
-//     $("#" + name).append(homeJokePost);
-// }
-
-// function init() {
-//     icndbFetch();
-//     daddyFetch();
-//     appSpotJoke();
-
-// }
-
 
 
 
