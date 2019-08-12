@@ -23,6 +23,11 @@ body {
     font-size: 17px;
 }
 
+/* .pagination {
+    display: hidden;
+} */
+
+
 .topnav a:hover {
     background-color: #ddd;
     color: black;
