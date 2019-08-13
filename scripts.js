@@ -2,7 +2,8 @@
 //TODO: DO I want the page to show the same content? when going back to prev page?
 
 let state = {icndbList : null, daddyList: null, curPage: 1, numOfJoke: 30, curJokeLink : null, firstNumOfPageNav: 1};
-const ICNDB_URl = "http://api.icndb.com/jokes/random/"; 
+// const ICNDB_URl = "http://api.icndb.com/jokes/random/"; 
+const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
 // const APPSOPT_URL = "https://official-joke-api.appspot.com/";
 let icndbList = [];
@@ -16,8 +17,11 @@ $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
 $(".page-item").click(loadNextPage);
-$("#next-btn").click(changePageNum);
+$("#next-btn").click(changeToNextPageNav);
+$("#prev-btn").click(changeToPrevPageNav);
 
+
+//only render when not click current page link
 function renderHomePage(event) {
     console.log(event);
     $(".pagination").show()
@@ -25,7 +29,8 @@ function renderHomePage(event) {
     if (event.target.id === "icndb") {
         console.log("ic inside");
         curJokeLink = "icndb";
-        icndbFetch();
+        // icndbFetch();
+        primoseAll();
     } else if (event.target.id === "daddy") {
         curJokeLink = "daddy";
         daddyFetch();
@@ -46,37 +51,85 @@ function loadNextPage(event) {
     }
 }
 
-function changePageNum() {
+function changeToNextPageNav() {
     //increase the current page count
     //ex: 1,2,3 present and click next-btn
     //then show 4,5,6
     curPage++;
     firstNumOfPageNav += 3;
     $(".page-btn").remove();
-     for (let i = 1; i <= 3; i++) {
+     for (let i = 2; i >= 0; i--) {
         let pageBtn = $("<li class='page-item page-btn' id='" + firstNumOfPageNav + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
-       $(".pagination").append(pageBtn);
+        $(pageBtn).insertAfter(".arrow-btn");
+    }     
+    console.log(firstNumOfPageNav);
+}
+
+//shouldn't fetch again if is same page
+function changeToPrevPageNav() {
+    if (firstNumOfPageNav >= 4) {
+        curPage -= 2;
+        $(".page-btn").remove();
+        for (let i = 1; i <= 3; i++) {
+            let pageBtn = $("<li class='page-item page-btn' id='" + firstNumOfPageNav + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav - i) +  "</a></li>");
+            $(pageBtn).insertAfter(".arrow-btn");
+        }
+        firstNumOfPageNav -= 3;
+        //load it as the first set of nav
+        curPage = firstNumOfPageNav;
+        console.log(curPage);
     }
-
-    // let pageItem = 
-
 }
 
-function icndbFetch() {
-    let mutipleJokeRequest = ICNDB_URl + numOfJoke;
-    fetch(mutipleJokeRequest)
-    .then(checkStatus)
-    .then(resp => resp.json())
-    .then((response) => {
-        icndbAppendToPage(response.value);
-    })
+// function icndbFetch() {
+//     let mutipleJokeRequest = ICNDB_URl + numOfJoke;
+//     fetch(mutipleJokeRequest)
+//     .then(checkStatus)
+//     .then(resp => resp.json())
+//     .then((response) => {
+//         icndbAppendToPage(response.value);
+//     })
+// }
+
+function primoseAll() {
+    let promiseList = [];
+    for (let i = 1; i <= numOfJoke; i++) {
+        promiseList.push(fetch(ICNDB_URl + i)); 
+    }
+    Promise.all(promiseList).then((values)=> {
+        console.log("vaues");
+        console.log(values);
+        return values.map((response) => response.json());
+    } ).then((response =>{
+        Promise.all(response).then(icndbAppendToPage(response));
+    })).catch(console.error);
 }
+
+// (function primoseAll() {
+//     // let promise1 = fetch(ICNDB_URl + "1");
+//     // let promise2 = fetch(ICNDB_URl + "2");
+//     let promiseList = [];
+//     for (let i = 1; i <= numOfJoke; i++) {
+//         promiseList.push(fetch(ICNDB_URl + i)); 
+//     }
+//     //arrray 
+//     Promise.all(promiseList).then((values)=> {
+//         console.log(values);
+//         return values.map((response) => response.json());
+//     } ).then((responses =>{
+//         Promise.all(responses).then(console.log);
+//     }))
+// })();
 
 //stroing the joke into an array for future reference
 function icndbAppendToPage(response) {
     //  let homeJokePost = response.value.joke;
+    console.log("response");
+    console.log(response);
     for (let key of response) {
-        let jokeToPost = key.joke;
+        //TODO: FIGURE OUT HOW TO ACCESS RIGHT DATA
+        // let jokeToPost =  key.PromiseValue;
+        // console.log(jokeToPost);
         let jokeItem = $("<div class=chosen-joke></div>");
         $(jokeItem).append("<p>" + jokeToPost + "</p>");
         $(".home-display-joke").append(jokeItem);
@@ -157,8 +210,3 @@ function checkStatus(response) {
 }
 
 
-
-// let options = `<div class ="home-display-joke"> 
-// <div class="home-joke" id="one"></div><div class="home-joke" id="two"></div><div class="home-joke" id="three"></div></div>`;
-// This is just an example from your amazing mentor Hao Chen
-//$(".example").append(options);
