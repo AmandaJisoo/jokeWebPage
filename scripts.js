@@ -1,4 +1,5 @@
 "use strict";
+//TODO: FIRST THING 8/14. Figure out how to remove the appending on prev
 //TODO:how can I keep track of what btn that user clicked and where should it belong
 //TODO: replace curPage with pbject id int parse
 let state = {icndbpageNum: 1, icndbList : null, daddyList: null, curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1, icndbNavNum: null};
@@ -38,23 +39,16 @@ function renderHomePage(event) {
     }
 }
 
-function handlePageNumCilck(event) {
-    console.log("user wants to change the page");
-    console.log(event);
-    console.log("load  innertext");
-    console.log(event.currentTarget.innerText);
-    let parsed = Number(event.currentTarget.innerText);
-    console.log(parsed);
-}
-
 function loadNextPage(event) {
     console.log("loadNext");
-    $(".chosen-joke").remove();
     $(".pagination").hide();
     //TODO:here COMEBACK HERE FOR ICNDPAGE UPDATE
     icndbpageNum = Number(event.currentTarget.innerText);
     curPage++;
     console.log("cur joke type", curJokeLink);
+    checkJokeTypeForFetch();
+}
+function checkJokeTypeForFetch() {
     if (curJokeLink === "icndb") {
         icndbFetch();
     } else if (curJokeLink === "daddy") {
@@ -62,9 +56,8 @@ function loadNextPage(event) {
         daddyFetch();
     } else {
         //third link
-    }
+    }  
 }
-
 function changeToNextPageNav(event) {
     //increase the current page count
     //ex: 1,2,3 present and click next-btn
@@ -73,6 +66,7 @@ function changeToNextPageNav(event) {
     firstNumOfPageNav += 3;
     icndbpageNum = firstNumOfPageNav;
     $(".page-btn").remove();
+    $(".chosen-joke").remove();
      for (let i = 2; i >= 0; i--) {
         let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav + i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
         $(pageBtn).insertAfter(".arrow-btn");
@@ -80,7 +74,7 @@ function changeToNextPageNav(event) {
     //attach event listener bc prev event listener has been delted
     $(".page-btn").click(loadNextPage);
     //TODO:show default page
-    loadNextPage(event);
+    checkJokeTypeForFetch();
     console.log(firstNumOfPageNav);
 }
 
@@ -100,7 +94,7 @@ function changeToPrevPageNav(event) {
         //load it as the first set of nav
         curPage = firstNumOfPageNav;
         $(".page-btn").click(loadNextPage);
-        loadNextPage(event);
+        checkJokeTypeForFetch();
     }
 }
 
