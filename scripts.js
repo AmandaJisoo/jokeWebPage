@@ -39,23 +39,25 @@ function renderHomePage(event) {
     } 
 }
 
-function loadNextPage(event) {
-    console.log("inside of load next page");
-    $(".chosen-joke").remove();
-    curPage++;
-    if (curJokeLink === "icndb") {
-        icndbFetch();
-    } else if (curJokeLink === "daddy") {
-        console.log("daddy inside");
-        daddyFetch();
-    } else {
-        //third link
-    }
-}
+// function loadNextPage(event) {
+//     console.log("inside of load next page");
+//     $(".chosen-joke").remove();
+//     curPage++;
+//     if (curJokeLink === "icndb") {
+//         icndbFetch();
+//     } else if (curJokeLink === "daddy") {
+//         console.log("daddy inside");
+//         daddyFetch();
+//     } else {
+//         //third link
+//     }
+// }
 
 function loadNextPage(event) {
     console.log("loadNext");
     $(".pagination").hide();
+    $(".chosen-joke").remove();
+    console.log("chosen joke removed")
     //TODO:here COMEBACK HERE FOR ICNDPAGE UPDATE
     icndbpageNum = Number(event.currentTarget.innerText);
     curPage++;
@@ -83,10 +85,10 @@ function changeToNextPageNav(event) {
     $(".chosen-joke").remove();
      for (let i = 2; i >= 0; i--) {
         let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav + i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
+        $(".page-btn").click(loadNextPage);
         $(pageBtn).insertAfter(".arrow-btn");
     }     
     //attach event listener bc prev event listener has been delted
-    $(".page-btn").click(loadNextPage);
     //TODO:show default page
     checkJokeTypeForFetch();
     console.log(firstNumOfPageNav);
@@ -102,12 +104,12 @@ function changeToPrevPageNav(event) {
             console.log(firstNumOfPageNav);
             //how to add event listner
             let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav - i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav - i) +  "</a></li>");
+            $(".page-btn").click(loadNextPage);
             $(pageBtn).insertAfter(".arrow-btn");
         }
         firstNumOfPageNav -= 3;
         //load it as the first set of nav
         curPage = firstNumOfPageNav;
-        $(".page-btn").click(loadNextPage);
         checkJokeTypeForFetch();
     }
 }
