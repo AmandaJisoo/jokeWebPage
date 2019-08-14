@@ -1,17 +1,19 @@
 "use strict";
-//TODO: DO I want the page to show the same content? when going back to prev page?
-
-let state = {icndbList : null, daddyList: null, curPage: 1, numOfJoke: 30, curJokeLink : null, firstNumOfPageNav: 1};
+//TODO:how can I keep track of what btn that user clicked and where should it belong
+//TODO: replace curPage with pbject id int parse
+let state = {icndbpageNum: 1, icndbList : null, daddyList: null, curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1, icndbNavNum: null};
 // const ICNDB_URl = "http://api.icndb.com/jokes/random/"; 
 const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
 // const APPSOPT_URL = "https://official-joke-api.appspot.com/";
+// let currentClickedPage = null;
+let icndbpageNum = 1; //keeps track of wich page of icndb page is
 let icndbList = [];
 let daddyList = [];
-let numOfJoke = 30;
+let numOfJoke = 10;
 let curJokeLink = null;
 let curPage = 1;
-let firstNumOfPageNav = 1;
+let firstNumOfPageNav = 1;// increase by three to provide three set of navigation
 $(".pagination").hide();
 $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
@@ -19,28 +21,40 @@ $("#assport").click(renderHomePage);
 $(".page-item").click(loadNextPage);
 $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
+$(".page-btn").click(loadNextPage);
 
 
 //only render when not click current page link
 function renderHomePage(event) {
-    console.log(event);
-    $(".pagination").show()
+    $(".pagination").hide()
     $(".chosen-joke").remove();
     if (event.target.id === "icndb") {
         console.log("ic inside");
         curJokeLink = "icndb";
-        // icndbFetch();
-        primoseAll();
+        icndbFetch();
     } else if (event.target.id === "daddy") {
         curJokeLink = "daddy";
         daddyFetch();
-    } 
+    }
+}
+
+function handlePageNumCilck(event) {
+    console.log("user wants to change the page");
+    console.log(event);
+    console.log("load  innertext");
+    console.log(event.currentTarget.innerText);
+    let parsed = Number(event.currentTarget.innerText);
+    console.log(parsed);
 }
 
 function loadNextPage(event) {
-    console.log("inside of load next page");
+    console.log("loadNext");
     $(".chosen-joke").remove();
+    $(".pagination").hide();
+    //TODO:here COMEBACK HERE FOR ICNDPAGE UPDATE
+    icndbpageNum = Number(event.currentTarget.innerText);
     curPage++;
+    console.log("cur joke type", curJokeLink);
     if (curJokeLink === "icndb") {
         icndbFetch();
     } else if (curJokeLink === "daddy") {
@@ -51,59 +65,61 @@ function loadNextPage(event) {
     }
 }
 
-function changeToNextPageNav() {
+function changeToNextPageNav(event) {
     //increase the current page count
     //ex: 1,2,3 present and click next-btn
     //then show 4,5,6
     curPage++;
     firstNumOfPageNav += 3;
+    icndbpageNum = firstNumOfPageNav;
     $(".page-btn").remove();
      for (let i = 2; i >= 0; i--) {
-        let pageBtn = $("<li class='page-item page-btn' id='" + firstNumOfPageNav + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
+        let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav + i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
         $(pageBtn).insertAfter(".arrow-btn");
     }     
+    //attach event listener bc prev event listener has been delted
+    $(".page-btn").click(loadNextPage);
+    //TODO:show default page
+    loadNextPage(event);
     console.log(firstNumOfPageNav);
 }
 
 //shouldn't fetch again if is same page
-function changeToPrevPageNav() {
+function changeToPrevPageNav(event) {
     if (firstNumOfPageNav >= 4) {
         curPage -= 2;
+        icndbpageNum = (firstNumOfPageNav -3);
         $(".page-btn").remove();
         for (let i = 1; i <= 3; i++) {
-            let pageBtn = $("<li class='page-item page-btn' id='" + firstNumOfPageNav + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav - i) +  "</a></li>");
+            console.log(firstNumOfPageNav);
+            //how to add event listner
+            let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav - i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav - i) +  "</a></li>");
             $(pageBtn).insertAfter(".arrow-btn");
         }
         firstNumOfPageNav -= 3;
         //load it as the first set of nav
         curPage = firstNumOfPageNav;
-        console.log(curPage);
+        $(".page-btn").click(loadNextPage);
+        loadNextPage(event);
     }
 }
 
-// function icndbFetch() {
-//     let mutipleJokeRequest = ICNDB_URl + numOfJoke;
-//     fetch(mutipleJokeRequest)
-//     .then(checkStatus)
-//     .then(resp => resp.json())
-//     .then((response) => {
-//         icndbAppendToPage(response.value);
-//     })
-// }
-
-function primoseAll() {
+function icndbFetch() {
     let promiseList = [];
-    for (let i = 1; i <= numOfJoke; i++) {
+    for (let i = ((icndbpageNum - 1) * numOfJoke + 1); i <= numOfJoke * icndbpageNum; i++) {
+        console.log(i);
         promiseList.push(fetch(ICNDB_URl + i)); 
     }
     Promise.all(promiseList).then((values)=> {
-        console.log("vaues");
-        console.log(values);
-        return values.map((response) => response.json());
-    } ).then((response =>{
-        Promise.all(response).then(icndbAppendToPage(response));
-    })).catch(console.error);
+        return values.map((response) => response.json())
+    }).then((response =>{
+        Promise.all(response).then(icndbAppendToPage);
+    })).then(()=> {
+        $(".pagination").show();
+    })
+    .catch(console.error);
 }
+
 
 // (function primoseAll() {
 //     // let promise1 = fetch(ICNDB_URl + "1");
@@ -123,21 +139,20 @@ function primoseAll() {
 
 //stroing the joke into an array for future reference
 function icndbAppendToPage(response) {
-    //  let homeJokePost = response.value.joke;
-    console.log("response");
-    console.log(response);
     for (let key of response) {
-        //TODO: FIGURE OUT HOW TO ACCESS RIGHT DATA
-        // let jokeToPost =  key.PromiseValue;
-        // console.log(jokeToPost);
-        let jokeItem = $("<div class=chosen-joke></div>");
-        $(jokeItem).append("<p>" + jokeToPost + "</p>");
-        $(".home-display-joke").append(jokeItem);
+        //only fetch the joke has a correspoding data
+        if (key.type != "NoSuchQuoteException") {
+           let jokeToPost =  key.value["joke"];
+           let jokeItem = $("<div class=chosen-joke></div>");
+           $(jokeItem).append("<p>" + jokeToPost + "</p>");
+           $(".home-display-joke").append(jokeItem);
+        }
     }
 }
 
 function daddyFetch() {
     let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
+    console.log(curPage);
     fetch(daddyJokeList,  {
         method: 'GET',
         headers: {
@@ -148,10 +163,13 @@ function daddyFetch() {
     .then(resp => resp.json())
     .then((response) => {
         daddyAppendToPage(response);
+    }).then(()=> {
+        $(".pagination").show();
     })
     .catch(console.error);
 }
  
+
 //attaching the daddyjoke to the page dynamically
 function daddyAppendToPage(response) {
     console.log(response.results);
