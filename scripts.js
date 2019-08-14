@@ -36,6 +36,20 @@ function renderHomePage(event) {
     } else if (event.target.id === "daddy") {
         curJokeLink = "daddy";
         daddyFetch();
+    } 
+}
+
+function loadNextPage(event) {
+    console.log("inside of load next page");
+    $(".chosen-joke").remove();
+    curPage++;
+    if (curJokeLink === "icndb") {
+        icndbFetch();
+    } else if (curJokeLink === "daddy") {
+        console.log("daddy inside");
+        daddyFetch();
+    } else {
+        //third link
     }
 }
 
@@ -163,7 +177,6 @@ function daddyFetch() {
     .catch(console.error);
 }
  
-
 //attaching the daddyjoke to the page dynamically
 function daddyAppendToPage(response) {
     console.log(response.results);
