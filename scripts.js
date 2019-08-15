@@ -1,7 +1,6 @@
 "use strict";
-//TODO: FIRST THING 8/14. Figure out how to remove the appending on prev
-//TODO:how can I keep track of what btn that user clicked and where should it belong
-//TODO: replace curPage with pbject id int parse
+//TODO: remove curPage
+//TODO: RELOAD THE ITEM WHEN THE BUG NEXT _BTN WAS CLICKED
 let state = {icndbpageNum: 1, icndbList : null, daddyList: null, curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1, icndbNavNum: null};
 // const ICNDB_URl = "http://api.icndb.com/jokes/random/"; 
 const ICNDB_URl = "http://api.icndb.com/jokes/";
@@ -9,6 +8,7 @@ const DADDY_URL = "https://icanhazdadjoke.com/";
 // const APPSOPT_URL = "https://official-joke-api.appspot.com/";
 // let currentClickedPage = null;
 let icndbpageNum = 1; //keeps track of wich page of icndb page is
+let daddyPageNum = 1;
 let icndbList = [];
 let daddyList = [];
 let numOfJoke = 10;
@@ -29,6 +29,7 @@ $(".page-btn").click(loadNextPage);
 function renderHomePage(event) {
     $(".pagination").hide()
     $(".chosen-joke").remove();
+    console.log("render home", event);
     if (event.target.id === "icndb") {
         console.log("ic inside");
         curJokeLink = "icndb";
@@ -39,79 +40,88 @@ function renderHomePage(event) {
     } 
 }
 
-// function loadNextPage(event) {
-//     console.log("inside of load next page");
-//     $(".chosen-joke").remove();
-//     curPage++;
-//     if (curJokeLink === "icndb") {
-//         icndbFetch();
-//     } else if (curJokeLink === "daddy") {
-//         console.log("daddy inside");
-//         daddyFetch();
-//     } else {
-//         //third link
-//     }
-// }
-
 function loadNextPage(event) {
     console.log("loadNext");
     $(".pagination").hide();
     $(".chosen-joke").remove();
-    console.log("chosen joke removed")
-    //TODO:here COMEBACK HERE FOR ICNDPAGE UPDATE
-    icndbpageNum = Number(event.currentTarget.innerText);
+    console.log("chosen joke removed");
     curPage++;
     console.log("cur joke type", curJokeLink);
-    checkJokeTypeForFetch();
+    icndbpageNum = parseInt(event.currentTarget.innerText);
+    daddyPageNum = parseInt(event.currentTarget.innerText);
+    fetchJokes();
 }
-function checkJokeTypeForFetch() {
+
+//decide only what to fetch
+//when the btn is clicked immediately uppate the stage of teh page to fetch next
+//
+function fetchJokes() {
     if (curJokeLink === "icndb") {
         icndbFetch();
     } else if (curJokeLink === "daddy") {
-        console.log("daddy inside");
         daddyFetch();
-    } else {
-        //third link
-    }  
+    } 
 }
+
 function changeToNextPageNav(event) {
     //increase the current page count
     //ex: 1,2,3 present and click next-btn
     //then show 4,5,6
+    // console.log("change to event", event);
+    console.log("next nav btn here")
     curPage++;
-    firstNumOfPageNav += 3;
-    icndbpageNum = firstNumOfPageNav;
+    // firstNumOfPageNav += 3;
+    icndbpageNum = parseInt($(".last-btn>.page-link").text()) + 1;
+    daddyPageNum = parseInt($(".last-btn").text()) + 1;
+    console.log ("parsed", icndbpageNum);
+    console.log("num", parseInt($(".last-btn>.page-link").text()));
     $(".page-btn").remove();
     $(".chosen-joke").remove();
+    let pageBtn = null;
      for (let i = 2; i >= 0; i--) {
-        let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav + i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
-        $(".page-btn").click(loadNextPage);
+        if (i != 2) {
+            pageBtn = $("<li class='page-item page-btn' id='" + (icndbpageNum + i) + "-page-btn'><a class='page-link' href='#'>" + (icndbpageNum + i) +  "</a></li>");
+        } else {
+            pageBtn = $("<li class='page-item page-btn last-btn' id='" + (icndbpageNum + i) + "-page-btn'><a class='page-link' href='#'>" + (icndbpageNum + i) +  "</a></li>");
+        }   
         $(pageBtn).insertAfter(".arrow-btn");
+        $(".page-btn").click(loadNextPage);
     }     
-    //attach event listener bc prev event listener has been delted
-    //TODO:show default page
-    checkJokeTypeForFetch();
-    console.log(firstNumOfPageNav);
+    fetchJokes();
 }
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
-    if (firstNumOfPageNav >= 4) {
-        curPage -= 2;
-        icndbpageNum = (firstNumOfPageNav -3);
+    let curUsedPage = parseInt($(".last-btn>.page-link").text());
+    console.log("curUsedPahr", curUsedPage);
+    if (curUsedPage >= 6) {
+
+        icndbpageNum = parseInt($(".last-btn>.page-link").text()) -3;
+        daddyPageNum = parseInt($(".last-btn>.page-link").text()) -3;
+
+        console.log("this is the last page ",icndbpageNum);
+        console.log("look at this",daddyPageNum);
+
         $(".page-btn").remove();
-        for (let i = 1; i <= 3; i++) {
-            console.log(firstNumOfPageNav);
-            //how to add event listner
-            let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav - i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav - i) +  "</a></li>");
-            $(".page-btn").click(loadNextPage);
+        let pageNum = icndbpageNum;
+        console.log(pageNum);
+        for (let i = 0; i < 3; i++) {
+            console.log(i);
+            let pageBtn = null;
+            if (i === 0) {
+                console.log("loop page num", pageNum + i);
+                pageBtn = $("<li class='page-item page-btn last-btn' id='" + (pageNum - i) + "-page-btn'><a class='page-link' href='#'>" + (pageNum - i) +  "</a></li>");
+            } else {
+                pageBtn = $("<li class='page-item page-btn' id='" + (pageNum - i) + "-page-btn'><a class='page-link' href='#'>" + (pageNum - i) +  "</a></li>");
+            }
             $(pageBtn).insertAfter(".arrow-btn");
+            $(".page-btn").click(loadNextPage);
         }
-        firstNumOfPageNav -= 3;
-        //load it as the first set of nav
-        curPage = firstNumOfPageNav;
-        checkJokeTypeForFetch();
+    } else {
+        //show the first page
+        icndbpageNum = 3;
     }
+    fetchJokes();
 }
 
 function icndbFetch() {
@@ -131,22 +141,6 @@ function icndbFetch() {
 }
 
 
-// (function primoseAll() {
-//     // let promise1 = fetch(ICNDB_URl + "1");
-//     // let promise2 = fetch(ICNDB_URl + "2");
-//     let promiseList = [];
-//     for (let i = 1; i <= numOfJoke; i++) {
-//         promiseList.push(fetch(ICNDB_URl + i)); 
-//     }
-//     //arrray 
-//     Promise.all(promiseList).then((values)=> {
-//         console.log(values);
-//         return values.map((response) => response.json());
-//     } ).then((responses =>{
-//         Promise.all(responses).then(console.log);
-//     }))
-// })();
-
 //stroing the joke into an array for future reference
 function icndbAppendToPage(response) {
     for (let key of response) {
@@ -161,8 +155,10 @@ function icndbAppendToPage(response) {
 }
 
 function daddyFetch() {
-    let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
-    console.log(curPage);
+    console.log("daddypag");
+    console.log(daddyPageNum);
+    // let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
+    let daddyJokeList = DADDY_URL + "search?page=" + daddyPageNum + "&limit=" + numOfJoke;
     fetch(daddyJokeList,  {
         method: 'GET',
         headers: {
