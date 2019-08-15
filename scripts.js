@@ -64,19 +64,6 @@ function fetchJokes() {
 }
 
 function changeToNextPageNav(event) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 03e1f95... new issue found when manuvering nav btn
-    //increase the current page count
-    //ex: 1,2,3 present and click next-btn
-    //then show 4,5,6
-    // console.log("change to event", event);
-<<<<<<< HEAD
->>>>>>> parent of 03e1f95... new issue found when manuvering nav btn
-=======
->>>>>>> parent of 03e1f95... new issue found when manuvering nav btn
     console.log("next nav btn here")
     curPage++;
     // firstNumOfPageNav += 3;
