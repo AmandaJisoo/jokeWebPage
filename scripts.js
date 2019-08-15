@@ -1,20 +1,18 @@
 "use strict";
 //TODO: remove curPage
 //TODO: RELOAD THE ITEM WHEN THE BUG NEXT _BTN WAS CLICKED
-let state = {icndbpageNum: 1, icndbList : null, daddyList: null, curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1, icndbNavNum: null};
+let state = {curPage: 1, icndbList : null, daddyList: null, curPage: 1, numOfJoke: 10, curJokeLink : null, icndbNavNum: null};
 // const ICNDB_URl = "http://api.icndb.com/jokes/random/"; 
 const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
 // const APPSOPT_URL = "https://official-joke-api.appspot.com/";
 // let currentClickedPage = null;
-let icndbpageNum = 1; //keeps track of wich page of icndb page is
-let daddyPageNum = 1;
+let curPage = 1; //keeps track of wich page of icndb page is
 let icndbList = [];
 let daddyList = [];
 let numOfJoke = 10;
 let curJokeLink = null;
-let curPage = 1;
-let firstNumOfPageNav = 1;// increase by three to provide three set of navigation
+// let curPage = 1;
 $(".pagination").hide();
 $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
@@ -45,10 +43,8 @@ function loadNextPage(event) {
     $(".pagination").hide();
     $(".chosen-joke").remove();
     console.log("chosen joke removed");
-    curPage++;
     console.log("cur joke type", curJokeLink);
-    icndbpageNum = parseInt(event.currentTarget.innerText);
-    daddyPageNum = parseInt(event.currentTarget.innerText);
+    curPage = parseInt(event.currentTarget.innerText);
     fetchJokes();
 }
 
@@ -64,25 +60,17 @@ function fetchJokes() {
 }
 
 function changeToNextPageNav(event) {
-    //increase the current page count
-    //ex: 1,2,3 present and click next-btn
-    //then show 4,5,6
-    // console.log("change to event", event);
-    console.log("next nav btn here")
-    curPage++;
-    // firstNumOfPageNav += 3;
-    icndbpageNum = parseInt($(".last-btn>.page-link").text()) + 1;
-    daddyPageNum = parseInt($(".last-btn").text()) + 1;
-    console.log ("parsed", icndbpageNum);
+    curPage = parseInt($(".last-btn>.page-link").text()) + 1;
+    console.log ("parsed", curPage);
     console.log("num", parseInt($(".last-btn>.page-link").text()));
     $(".page-btn").remove();
     $(".chosen-joke").remove();
     let pageBtn = null;
      for (let i = 2; i >= 0; i--) {
         if (i != 2) {
-            pageBtn = $("<li class='page-item page-btn' id='" + (icndbpageNum + i) + "-page-btn'><a class='page-link' href='#'>" + (icndbpageNum + i) +  "</a></li>");
+            pageBtn = $("<li class='page-item page-btn' id='" + (curPage + i) + "-page-btn'><a class='page-link' href='#'>" + (curPage + i) +  "</a></li>");
         } else {
-            pageBtn = $("<li class='page-item page-btn last-btn' id='" + (icndbpageNum + i) + "-page-btn'><a class='page-link' href='#'>" + (icndbpageNum + i) +  "</a></li>");
+            pageBtn = $("<li class='page-item page-btn last-btn' id='" + (curPage + i) + "-page-btn'><a class='page-link' href='#'>" + (curPage + i) +  "</a></li>");
         }   
         $(pageBtn).insertAfter(".arrow-btn");
         $(".page-btn").click(loadNextPage);
@@ -90,20 +78,20 @@ function changeToNextPageNav(event) {
     fetchJokes();
 }
 
+//TODO: FIX THE NAVBACK AND FRONT FETCHING ISSUE
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
     let curUsedPage = parseInt($(".last-btn>.page-link").text());
     console.log("curUsedPahr", curUsedPage);
     if (curUsedPage >= 6) {
 
-        icndbpageNum = parseInt($(".last-btn>.page-link").text()) -3;
-        daddyPageNum = parseInt($(".last-btn>.page-link").text()) -3;
+        curPage = parseInt($(".last-btn>.page-link").text()) -3;
 
-        console.log("this is the last page ",icndbpageNum);
-        console.log("look at this",daddyPageNum);
+        console.log("this is the last page ",curPage);
+        console.log("look at this",curPage);
 
         $(".page-btn").remove();
-        let pageNum = icndbpageNum;
+        let pageNum = curPage;
         console.log(pageNum);
         for (let i = 0; i < 3; i++) {
             console.log(i);
@@ -117,16 +105,18 @@ function changeToPrevPageNav(event) {
             $(pageBtn).insertAfter(".arrow-btn");
             $(".page-btn").click(loadNextPage);
         }
-    } else {
-        //show the first page
-        icndbpageNum = 3;
     }
+    // } else {
+    //     //show the first page
+    //     //BUG IS HERE
+    //     curPage = 3;
+    // }
     fetchJokes();
 }
 
 function icndbFetch() {
     let promiseList = [];
-    for (let i = ((icndbpageNum - 1) * numOfJoke + 1); i <= numOfJoke * icndbpageNum; i++) {
+    for (let i = ((curPage - 1) * numOfJoke + 1); i <= numOfJoke * curPage; i++) {
         console.log(i);
         promiseList.push(fetch(ICNDB_URl + i)); 
     }
@@ -156,9 +146,9 @@ function icndbAppendToPage(response) {
 
 function daddyFetch() {
     console.log("daddypag");
-    console.log(daddyPageNum);
+    console.log(curPage);
     // let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
-    let daddyJokeList = DADDY_URL + "search?page=" + daddyPageNum + "&limit=" + numOfJoke;
+    let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
     fetch(daddyJokeList,  {
         method: 'GET',
         headers: {
