@@ -115,7 +115,7 @@ function icndbAppendToPage(response) {
 function daddyFetch() {
     let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
     console.log(daddyJokeList);
-    fetch({
+    fetch(daddyJokeList, {
         method: 'GET',
         headers: {
             // 'Accept':'application/json'
