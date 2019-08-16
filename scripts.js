@@ -2,18 +2,17 @@
 //TODO: FIRST THING 8/14. Figure out how to remove the appending on prev
 //TODO:how can I keep track of what btn that user clicked and where should it belong
 //TODO: replace curPage with pbject id int parse
-let state = {icndbpageNum: 1, icndbList : null, daddyList: null, curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1, icndbNavNum: null};
+let state = {icndbList : null, daddyList: null, curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1, icndbNavNum: null};
 // const ICNDB_URl = "http://api.icndb.com/jokes/random/"; 
 const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
 // const APPSOPT_URL = "https://official-joke-api.appspot.com/";
 // let currentClickedPage = null;
-let icndbpageNum = 1; //keeps track of wich page of icndb page is
+let curPage = 1; //keeps track of wich page of icndb page is
 let icndbList = [];
 let daddyList = [];
 let numOfJoke = 10;
 let curJokeLink = null;
-let curPage = 1;
 let firstNumOfPageNav = 1;// increase by three to provide three set of navigation
 $(".pagination").hide();
 $("#icndb").click(renderHomePage);
@@ -39,29 +38,14 @@ function renderHomePage(event) {
     } 
 }
 
-// function loadNextPage(event) {
-//     console.log("inside of load next page");
-//     $(".chosen-joke").remove();
-//     curPage++;
-//     if (curJokeLink === "icndb") {
-//         icndbFetch();
-//     } else if (curJokeLink === "daddy") {
-//         console.log("daddy inside");
-//         daddyFetch();
-//     } else {
-//         //third link
-//     }
-// }
-
 function loadNextPage(event) {
     console.log("loadNext");
     $(".pagination").hide();
     $(".chosen-joke").remove();
-    console.log("chosen joke removed")
     //TODO:here COMEBACK HERE FOR ICNDPAGE UPDATE
-    icndbpageNum = Number(event.currentTarget.innerText);
-    curPage++;
-    console.log("cur joke type", curJokeLink);
+    console.log(event);
+    curPage = parseInt(event.currentTarget.innerText);
+    console.log("loadNextPage", curPage);
     checkJokeTypeForFetch();
 }
 function checkJokeTypeForFetch() {
@@ -78,45 +62,43 @@ function changeToNextPageNav(event) {
     //increase the current page count
     //ex: 1,2,3 present and click next-btn
     //then show 4,5,6
-    curPage++;
-    firstNumOfPageNav += 3;
-    icndbpageNum = firstNumOfPageNav;
     $(".page-btn").remove();
     $(".chosen-joke").remove();
+    firstNumOfPageNav += 3;
      for (let i = 2; i >= 0; i--) {
         let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav + i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
         $(".page-btn").click(loadNextPage);
         $(pageBtn).insertAfter(".arrow-btn");
     }     
+    curPage = firstNumOfPageNav;
     //attach event listener bc prev event listener has been delted
     //TODO:show default page
     checkJokeTypeForFetch();
-    console.log(firstNumOfPageNav);
+    console.log("here", firstNumOfPageNav);
 }
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
     if (firstNumOfPageNav >= 4) {
-        curPage -= 2;
-        icndbpageNum = (firstNumOfPageNav -3);
+        console.log("firstNumOfPageNav", firstNumOfPageNav);
+        curPage = firstNumOfPageNav -3;
         $(".page-btn").remove();
         for (let i = 1; i <= 3; i++) {
-            console.log(firstNumOfPageNav);
+            console.log("here", firstNumOfPageNav - i);
             //how to add event listner
             let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav - i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav - i) +  "</a></li>");
             $(".page-btn").click(loadNextPage);
             $(pageBtn).insertAfter(".arrow-btn");
         }
-        firstNumOfPageNav -= 3;
+        firstNumOfPageNav = curPage;
         //load it as the first set of nav
-        curPage = firstNumOfPageNav;
         checkJokeTypeForFetch();
     }
 }
 
 function icndbFetch() {
     let promiseList = [];
-    for (let i = ((icndbpageNum - 1) * numOfJoke + 1); i <= numOfJoke * icndbpageNum; i++) {
+    for (let i = ((curPage - 1) * numOfJoke + 1); i <= numOfJoke * curPage; i++) {
         console.log(i);
         promiseList.push(fetch(ICNDB_URl + i)); 
     }
@@ -162,7 +144,7 @@ function icndbAppendToPage(response) {
 
 function daddyFetch() {
     let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
-    console.log(curPage);
+    console.log(daddyJokeList);
     fetch(daddyJokeList,  {
         method: 'GET',
         headers: {
