@@ -4,7 +4,6 @@ let state = {curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1
 const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
 
-// let currentClickedPage = null;
 let curPage = 1; //keeps track of wich page of icndb page is
 let numOfJoke = 10;
 let curJokeLink = null;
@@ -51,6 +50,7 @@ function changeToNextPageNav(event) {
     //increase the current page count
     //ex: 1,2,3 present and click next-btn
     //then show 4,5,6
+    console.log("page num", firstNumOfPageNav);
     $(".page-btn").remove();
     $(".chosen-joke").remove();
     firstNumOfPageNav += 3;
@@ -60,11 +60,13 @@ function changeToNextPageNav(event) {
         $(".page-btn").click(loadNextPage);
     }     
     curPage = firstNumOfPageNav;
+    console.log("cur page num", curPage);
     checkJokeTypeForFetch();
 }
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
+    console.log("page num", firstNumOfPageNav);
     if (firstNumOfPageNav >= 4) {
         $(".page-btn").remove();
         for (let i = 1; i <= 3; i++) {
@@ -118,7 +120,6 @@ function daddyFetch() {
     fetch(daddyJokeList, {
         method: 'GET',
         headers: {
-            // 'Accept':'application/json'
             "Accept": "application/json"
         }
     })
