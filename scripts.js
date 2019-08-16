@@ -45,6 +45,7 @@ function loadNextPage(event) {
 }
 
 function checkJokeTypeForFetch() {
+    console.log("check type", parseInt(curPage));
     if (curJokeLink === "icndb") {
         icndbFetch();
     } else if (curJokeLink === "daddy") {
@@ -82,6 +83,7 @@ function changeToPrevPageNav(event) {
         curPage = firstNumOfPageNav;
         checkJokeTypeForFetch();
     }
+    console.log("check this nav page", firstNumOfPageNav);
     console.log("check this cur page", curPage);
 }
 
