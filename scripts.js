@@ -29,7 +29,6 @@ function renderHomePage(event) {
     $(".pagination").hide()
     $(".chosen-joke").remove();
     if (event.target.id === "icndb") {
-        console.log("ic inside");
         curJokeLink = "icndb";
         icndbFetch();
     } else if (event.target.id === "daddy") {
@@ -39,24 +38,18 @@ function renderHomePage(event) {
 }
 
 function loadNextPage(event) {
-    console.log("loadNext");
     $(".pagination").hide();
     $(".chosen-joke").remove();
-    //TODO:here COMEBACK HERE FOR ICNDPAGE UPDATE
-    console.log(event);
     curPage = parseInt(event.currentTarget.innerText);
-    console.log("loadNextPage", curPage);
     checkJokeTypeForFetch();
 }
+
 function checkJokeTypeForFetch() {
     if (curJokeLink === "icndb") {
         icndbFetch();
     } else if (curJokeLink === "daddy") {
-        console.log("daddy inside");
         daddyFetch();
-    } else {
-        //third link
-    }  
+    }
 }
 function changeToNextPageNav(event) {
     //increase the current page count
@@ -67,37 +60,34 @@ function changeToNextPageNav(event) {
     firstNumOfPageNav += 3;
      for (let i = 2; i >= 0; i--) {
         let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav + i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
-        $(".page-btn").click(loadNextPage);
         $(pageBtn).insertAfter(".arrow-btn");
+        $(".page-btn").click(loadNextPage);
     }     
     curPage = firstNumOfPageNav;
-    //attach event listener bc prev event listener has been delted
-    //TODO:show default page
     checkJokeTypeForFetch();
-    console.log("here", firstNumOfPageNav);
 }
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
     if (firstNumOfPageNav >= 4) {
-        console.log("firstNumOfPageNav", firstNumOfPageNav);
-        curPage = firstNumOfPageNav -3;
+        // console.log("firstNumOfPageNav", firstNumOfPageNav);
         $(".page-btn").remove();
         for (let i = 1; i <= 3; i++) {
-            console.log("here", firstNumOfPageNav - i);
             //how to add event listner
             let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav - i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav - i) +  "</a></li>");
-            $(".page-btn").click(loadNextPage);
             $(pageBtn).insertAfter(".arrow-btn");
+            $(".page-btn").click(loadNextPage);
         }
-        firstNumOfPageNav = curPage;
-        //load it as the first set of nav
+        firstNumOfPageNav -= 3;
+        curPage = firstNumOfPageNav;
         checkJokeTypeForFetch();
     }
+    console.log("check this cur page", curPage);
 }
 
 function icndbFetch() {
     let promiseList = [];
+    curPage = parseInt(curPage);
     for (let i = ((curPage - 1) * numOfJoke + 1); i <= numOfJoke * curPage; i++) {
         console.log(i);
         promiseList.push(fetch(ICNDB_URl + i)); 
@@ -106,28 +96,12 @@ function icndbFetch() {
         return values.map((response) => response.json())
     }).then((response =>{
         Promise.all(response).then(icndbAppendToPage);
-    })).then(()=> {
+    }))
+    .then(()=> {
         $(".pagination").show();
     })
     .catch(console.error);
 }
-
-
-// (function primoseAll() {
-//     // let promise1 = fetch(ICNDB_URl + "1");
-//     // let promise2 = fetch(ICNDB_URl + "2");
-//     let promiseList = [];
-//     for (let i = 1; i <= numOfJoke; i++) {
-//         promiseList.push(fetch(ICNDB_URl + i)); 
-//     }
-//     //arrray 
-//     Promise.all(promiseList).then((values)=> {
-//         console.log(values);
-//         return values.map((response) => response.json());
-//     } ).then((responses =>{
-//         Promise.all(responses).then(console.log);
-//     }))
-// })();
 
 //stroing the joke into an array for future reference
 function icndbAppendToPage(response) {
@@ -145,7 +119,7 @@ function icndbAppendToPage(response) {
 function daddyFetch() {
     let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
     console.log(daddyJokeList);
-    fetch(daddyJokeList,  {
+    fetch({
         method: 'GET',
         headers: {
             'Accept' : 'application/json'
@@ -163,7 +137,6 @@ function daddyFetch() {
  
 //attaching the daddyjoke to the page dynamically
 function daddyAppendToPage(response) {
-    console.log(response.results);
     for (let key of response.results) {
         let jokeToPost = key.joke;
         let jokeItem = $("<div class=chosen-joke></div>");
@@ -172,6 +145,13 @@ function daddyAppendToPage(response) {
     }
 }
 
+function checkStatus(response) {
+    if (!response.ok) {
+        throw Error("Error in request: " + response.statusText);
+    }
+    //reponse object
+    return response;
+}
 
 
 // function appendDaddyToHTML(list) {
@@ -209,13 +189,5 @@ function daddyAppendToPage(response) {
 //     .catch(console.error);
 // }
 
-function checkStatus(response) {
-    console.log(response);
-    if (!response.ok) {
-        throw Error("Error in request: " + response.statusText);
-    }
-    //reponse object
-    return response;
-}
 
 
