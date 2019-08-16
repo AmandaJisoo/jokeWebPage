@@ -1,16 +1,11 @@
 "use strict";
 //TODO: FIRST THING 8/14. Figure out how to remove the appending on prev
-//TODO:how can I keep track of what btn that user clicked and where should it belong
-//TODO: replace curPage with pbject id int parse
-let state = {icndbList : null, daddyList: null, curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1, icndbNavNum: null};
-// const ICNDB_URl = "http://api.icndb.com/jokes/random/"; 
+let state = {curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1}; 
 const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
-// const APPSOPT_URL = "https://official-joke-api.appspot.com/";
+
 // let currentClickedPage = null;
 let curPage = 1; //keeps track of wich page of icndb page is
-let icndbList = [];
-let daddyList = [];
 let numOfJoke = 10;
 let curJokeLink = null;
 let firstNumOfPageNav = 1;// increase by three to provide three set of navigation
@@ -71,7 +66,6 @@ function changeToNextPageNav(event) {
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
     if (firstNumOfPageNav >= 4) {
-        // console.log("firstNumOfPageNav", firstNumOfPageNav);
         $(".page-btn").remove();
         for (let i = 1; i <= 3; i++) {
             //how to add event listner
@@ -124,7 +118,8 @@ function daddyFetch() {
     fetch({
         method: 'GET',
         headers: {
-            'Accept' : 'application/json'
+            // 'Accept':'application/json'
+            "Accept": "application/json"
         }
     })
     .then(checkStatus)
