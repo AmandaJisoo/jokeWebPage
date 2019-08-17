@@ -40,6 +40,7 @@ function loadNextPage(event) {
 
 function checkJokeTypeForFetch() {
     console.log("check type", parseInt(curPage));
+    console.log(curPage)
     if (curJokeLink === "icndb") {
         icndbFetch();
     } else if (curJokeLink === "daddy") {
@@ -50,9 +51,9 @@ function changeToNextPageNav(event) {
     //increase the current page count
     //ex: 1,2,3 present and click next-btn
     //then show 4,5,6
-    console.log("page num", firstNumOfPageNav);
     $(".page-btn").remove();
     $(".chosen-joke").remove();
+    console.log("page num", firstNumOfPageNav);
     firstNumOfPageNav += 3;
      for (let i = 2; i >= 0; i--) {
         let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav + i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
@@ -63,6 +64,7 @@ function changeToNextPageNav(event) {
     console.log("cur page num", curPage);
     checkJokeTypeForFetch();
 }
+
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
@@ -115,8 +117,10 @@ function icndbAppendToPage(response) {
 }
 
 function daddyFetch() {
+    console.log("curPage");
+    console.log(curPage);
     let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
-    console.log(daddyJokeList);
+    console.log("isBeing called", daddyJokeList);
     fetch(daddyJokeList, {
         method: 'GET',
         headers: {
