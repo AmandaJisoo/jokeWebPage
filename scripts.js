@@ -1,5 +1,5 @@
 "use strict";
-//TODO: FIRST THING 8/14. Figure out how to remove the appending on prev
+
 let state = {curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1}; 
 const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
@@ -12,11 +12,8 @@ $(".pagination").hide();
 $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
-$(".page-item").click(loadNextPage);
 $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
-$(".page-btn").click(loadNextPage);
-
 
 //only render when not click current page link
 function renderHomePage(event) {
@@ -32,25 +29,26 @@ function renderHomePage(event) {
 }
 
 function loadNextPage(event) {
+    console.log(event);
     $(".pagination").hide();
     $(".chosen-joke").remove();
     curPage = parseInt(event.currentTarget.innerText);
+    console.log(typeof(curPage));
+    console.log(curPage);
     checkJokeTypeForFetch();
 }
 
 function checkJokeTypeForFetch() {
-    console.log("check type", parseInt(curPage));
-    console.log(curPage)
     if (curJokeLink === "icndb") {
         icndbFetch();
     } else if (curJokeLink === "daddy") {
         daddyFetch();
     }
 }
+
 function changeToNextPageNav(event) {
-    //increase the current page count
-    //ex: 1,2,3 present and click next-btn
-    //then show 4,5,6
+    console.log("Hao", event);
+    console.log("curPage", curPage)
     $(".page-btn").remove();
     $(".chosen-joke").remove();
     console.log("page num", firstNumOfPageNav);
@@ -61,15 +59,16 @@ function changeToNextPageNav(event) {
         $(".page-btn").click(loadNextPage);
     }     
     curPage = firstNumOfPageNav;
-    console.log("cur page num", curPage);
     checkJokeTypeForFetch();
 }
 
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
-    console.log("page num", firstNumOfPageNav);
+    console.log("firstNumOfPageNav", firstNumOfPageNav);
+    console.log("curPage", curPage)
     if (firstNumOfPageNav >= 4) {
+        $(".chosen-joke").remove();
         $(".page-btn").remove();
         for (let i = 1; i <= 3; i++) {
             //how to add event listner
@@ -81,15 +80,12 @@ function changeToPrevPageNav(event) {
         curPage = firstNumOfPageNav;
         checkJokeTypeForFetch();
     }
-    console.log("check this nav page", firstNumOfPageNav);
-    console.log("check this cur page", curPage);
 }
 
 function icndbFetch() {
     let promiseList = [];
     curPage = parseInt(curPage);
     for (let i = ((curPage - 1) * numOfJoke + 1); i <= numOfJoke * curPage; i++) {
-        console.log(i);
         promiseList.push(fetch(ICNDB_URl + i)); 
     }
     Promise.all(promiseList).then((values)=> {
@@ -106,7 +102,6 @@ function icndbFetch() {
 //stroing the joke into an array for future reference
 function icndbAppendToPage(response) {
     for (let key of response) {
-        //only fetch the joke has a correspoding data
         if (key.type != "NoSuchQuoteException") {
            let jokeToPost =  key.value["joke"];
            let jokeItem = $("<div class=chosen-joke></div>");
@@ -117,9 +112,8 @@ function icndbAppendToPage(response) {
 }
 
 function daddyFetch() {
-    console.log("curPage");
-    console.log(curPage);
     let daddyJokeList = DADDY_URL + "search?page=" + curPage + "&limit=" + numOfJoke;
+    console.log("curPage for daddy", curPage);
     console.log("isBeing called", daddyJokeList);
     fetch(daddyJokeList, {
         method: 'GET',
@@ -151,45 +145,7 @@ function checkStatus(response) {
     if (!response.ok) {
         throw Error("Error in request: " + response.statusText);
     }
-    //reponse object
     return response;
 }
-
-
-// function appendDaddyToHTML(list) {
-//     for (let jokeToPost of icndbList) {
-//         let jokeItem = $("<div class=chosen-joke></div>");
-//         $(jokeItem).append("<p>" + jokeToPost + "</p>");
-//         $(".home-display-joke").append(jokeItem);
-//     }   
-// }
-
-// function removeCurrentJokes() {
-//     $(".home-display-joke").detach();
-// }
-
-// <div class="joke-list">Something</div> 
-// function icndbFetch() {
-//     fetch(ICNDB_URl)
-//     .then(checkStatus)
-//     .then(resp => resp.json())
-//     .then((response) => {
-//         icndbAppendToPage(response, "one");
-//     })
-//     .catch(console.error);
-// }
-
-// function appSpotJoke() {
-//     let appRandomSpotUrl = APPSOPT_URL + "random_joke";
-//     fetch(appRandomSpotUrl)
-//     .then(checkStatus)
-//     .then(resp => resp.json())
-//     .then((response) => {
-//         console.log(response);
-//         appSpotRandomToPage(response, "three");
-//     })
-//     .catch(console.error);
-// }
-
 
 
