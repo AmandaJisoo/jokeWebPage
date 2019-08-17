@@ -63,7 +63,7 @@ function changeToNextPageNav(event) {
     console.log("cur page num", curPage);
     checkJokeTypeForFetch();
 }
-jnljnlnljn
+
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
     console.log("page num", firstNumOfPageNav);
