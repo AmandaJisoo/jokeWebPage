@@ -47,11 +47,8 @@ function checkJokeTypeForFetch() {
 }
 
 function changeToNextPageNav(event) {
-    console.log("Hao", event);
-    console.log("curPage", curPage)
     $(".page-btn").remove();
     $(".chosen-joke").remove();
-    console.log("page num", firstNumOfPageNav);
     firstNumOfPageNav += 3;
      for (let i = 2; i >= 0; i--) {
         let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav + i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
@@ -65,8 +62,6 @@ function changeToNextPageNav(event) {
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
-    console.log("firstNumOfPageNav", firstNumOfPageNav);
-    console.log("curPage", curPage)
     if (firstNumOfPageNav >= 4) {
         $(".chosen-joke").remove();
         $(".page-btn").remove();
