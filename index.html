@@ -1,46 +1,50 @@
+<!-- TODO: spinner for loading -->
+<!-- the option-stat fixed -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.min.css">
     <title>Random Joke</title>
 </head>
 <body>
+    <!--  -->
     <div class="topnav">
         <a href="#home">Home</a>
         <a href="#contact" class="link">Framework</a>
         <a href="#project" class="link">About Project</a>
     </div>  
-      <!-- <div class ="home-display-joke"> -->
+    <h1 class="title joke-option">
+      Daily Joke
+    </h1>
     <form>
-        <div class= "joke-option">
-            <div class="background"></div>
-            <legend>Choose a Joke Type:</legend>
+        <div class= "joke-option user-choice">
+            <legend class="option-stat">Choose a Joke Type:<br></legend>
+            <label for="icndb" class="radio-choice">
             <input type="radio" name="radio-choice" id="icndb"/>
-            <label for="radio-choice-1">Joke Type 1</label>
-
+            Joke Type 1
+            </label>
+            <label for="daddy" class="radio-choice">
             <input type="radio" name="radio-choice" id="daddy"/>
-            <label for="radio-choice-2">Joke Type 2</label>
-
-            <input type="radio" name="radio-choice" id="assport"/>
-            <label for="radio-choice-3">Joke Type 1</label>
+            Joke Type 2
+          </label>
         </div>
     </form>
     <div class ="home-display-joke"></div>
-    <!-- nav  -->
-    <nav aria-label="Page navigation example">
+    <nav>
         <ul class="pagination">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
+          <li class="page-item arrow-btn">
+            <a class="page-link" id="prev-btn" href="#" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
               <span class="sr-only">Previous</span>
             </a>
           </li>
           <li class="page-item page-btn" id="1-page-btn"><a class="page-link" href="#">1</a></li>
           <li class="page-item page-btn" id="2-page-btn"><a class="page-link" href="#">2</a></li>
-          <li class="page-item page-btn" id="3-page-btn"><a class="page-link" href="#">3</a></li>
+          <li class="page-item page-btn last-btn" id="3-page-btn"><a class="page-link" href="#">3</a></li>
           <li class="page-item">
             <a class="page-link" id="next-btn" href="#" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
@@ -49,13 +53,7 @@
           </li>
         </ul>
     </nav>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
     <script src="scripts.js"></script>
 </body>
 </html>
-
