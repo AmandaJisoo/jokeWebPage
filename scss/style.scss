@@ -1,0 +1,76 @@
+$primary-color: #f1a5a5;
+// navBackground
+%flex-message {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    text-align: center;
+}
+
+%message-shared {
+    background-image: url("../img/navBackground.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.topnav {
+    background-color: $primary-color;
+    @extend %message-shared;
+    @extend %flex-message;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.title {
+    margin-bottom: 0px;
+    font-size: 5vh;
+    margin-top: 10vh;
+}
+
+.joke-option {
+    @extend %message-shared;
+    @extend %flex-message;
+    flex-direction: row;
+}
+
+
+.option-stat {
+    margin-top: 5vh;
+}
+
+.introduce-option {
+    margin: 30px 30px;
+    font-size: 10rem;
+}
+
+.radio-choice {
+    display: inline-block;
+    margin-left:30%;
+    margin-right: 30%;
+} 
+
+.user-choice {
+    padding: 50px 50px;
+    background-color: white;
+}
+
+body {
+    @extend %message-shared;
+}
+
+//if desktop do this..
+@media all and (min-width: 600px) {    
+    // .topnav  {  
+    //   flex-wrap: wrap;  
+    // }  
+    // .title {
+    //     margin-bottom: 0px;
+    //     font-size: 10vh;
+    // }
+}  

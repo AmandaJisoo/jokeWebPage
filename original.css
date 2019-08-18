@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -7,7 +8,6 @@ body {
 /*change reference //https://medium.com/flexbox-and-grids/the-most-popular-navigation-bars-created-with-flexbox-6c0f59f55686 */
 .topnav {
     overflow: hidden;
-    background-color: #f1a5a5;
     display: flex;
     justify-content: 2vw;
     align-items: center;
