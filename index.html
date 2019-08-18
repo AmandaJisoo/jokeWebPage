@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.min.css">
     <title>Random Joke</title>
 </head>
 <body>
+    <h1>
+      Joke Project
+    </h1>
     <div class="topnav">
         <a href="#home">Home</a>
         <a href="#contact" class="link">Framework</a>
@@ -17,16 +20,18 @@
         <div class= "joke-option">
             <div class="background"></div>
             <legend>Choose a Joke Type:</legend>
+            <label for="icndb">
             <input type="radio" name="radio-choice" id="icndb"/>
-            <label for="radio-choice-1">Joke Type 1</label>
-
+            Joke Type 1
+            </label>
+            <label for="daddy">
             <input type="radio" name="radio-choice" id="daddy"/>
-            <label for="radio-choice-2">Joke Type 2</label>
+            Joke Type 2
+          </label>
         </div>
     </form>
     <div class ="home-display-joke"></div>
-    <!-- nav  -->
-    <nav aria-label="Page navigation example">
+    <nav>
         <ul class="pagination">
           <li class="page-item arrow-btn">
             <a class="page-link" id="prev-btn" href="#" aria-label="Previous">

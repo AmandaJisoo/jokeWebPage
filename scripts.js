@@ -4,10 +4,10 @@ let state = {curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1
 const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
 
-let curPage = 1; //keeps track of wich page of icndb page is
+let curPage = 1; 
 let numOfJoke = 10;
 let curJokeLink = null;
-let firstNumOfPageNav = 1;// increase by three to provide three set of navigation
+let firstNumOfPageNav = 1;
 $(".pagination").hide();
 $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
@@ -15,6 +15,7 @@ $("#assport").click(renderHomePage);
 $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
 
+//Handles render 
 //only render when not click current page link
 function renderHomePage(event) {
     $(".pagination").hide()
