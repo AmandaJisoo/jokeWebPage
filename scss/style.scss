@@ -31,32 +31,35 @@ $primary-color: #f1a5a5;
     margin-bottom: 0px;
     font-size: 5vh;
     margin-top: 10vh;
+    text-align: center;
 }
 
-.joke-option {
-    @extend %message-shared;
+form {
     @extend %flex-message;
-    flex-direction: row;
+    // height: 50%
+    .user-choice {
+        width: 50%;
+        padding-top: 2vh;
+        padding-right: 2vw;
+        padding-bottom: 2vh;
+        padding-left: 2vw;
+        text-align: center;
+    }
+    .radio-choice {
+        display: inline-block;
+        margin-left:30%;
+        margin-right: 30%;
+    } 
+
+    
+    .option-stat {
+        margin-bottom: 4vh;
+    }
 }
 
 
-.option-stat {
-    margin-top: 5vh;
-}
-
-.introduce-option {
-    margin: 30px 30px;
-    font-size: 10rem;
-}
-
-.radio-choice {
-    display: inline-block;
-    margin-left:30%;
-    margin-right: 30%;
-} 
 
 .user-choice {
-    padding: 50px 50px;
     background-color: white;
 }
 
