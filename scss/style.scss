@@ -28,32 +28,33 @@ $primary-color: #f1a5a5;
 }
 
 .title {
-    margin-bottom: 0px;
-    font-size: 5vh;
-    margin-top: 10vh;
+    // padding-bottom: 0px;
+    font-size: 8vh;
+    margin-top: 30vh;
     text-align: center;
 }
 
 form {
-    @extend %flex-message;
     // height: 50%
+    display: block;
+    text-align: center;
     .user-choice {
-        width: 50%;
-        padding-top: 2vh;
-        padding-right: 2vw;
-        padding-bottom: 2vh;
-        padding-left: 2vw;
-        text-align: center;
+        @extend %flex-message;
+        margin-top: 10vh;
+        padding: 8vw;
+        margin-right: 7vw;
+        margin-left: 7vw;
     }
     .radio-choice {
-        display: inline-block;
-        margin-left:30%;
-        margin-right: 30%;
+        // display: inline-block;
+        margin-left:5vw;
+        margin-right: 5vw;
     } 
 
     
     .option-stat {
         margin-bottom: 4vh;
+        display: inline-block;
     }
 }
 

@@ -14,6 +14,12 @@ $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
 $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
+$(".user-choice").click(()=> {
+    $(".user-choice").hide();
+    $(".title").hide();
+})    
+
+
 
 //Handles render 
 //only render when not click current page link
