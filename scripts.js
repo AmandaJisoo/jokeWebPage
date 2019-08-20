@@ -9,7 +9,7 @@ let numOfJoke = 10;
 let curJokeLink = null;
 let firstNumOfPageNav = 1;
 $(".pagination").hide();
-$("")
+$("#loading").hide();
 $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
@@ -19,7 +19,7 @@ $(".user-choice").click(()=> {
     $(".user-choice").hide();
     $(".title").hide();
     $(".explanation").hide();
-    // $(".lds-dual-ring").show();
+    $("#loading").show();
 })    
 
 
@@ -39,7 +39,6 @@ function renderHomePage(event) {
 }
 
 function loadNextPage(event) {
-    console.log(event);
     $(".pagination").hide();
     $(".chosen-joke").remove();
     curPage = parseInt(event.currentTarget.innerText);
@@ -114,6 +113,7 @@ function icndbAppendToPage(response) {
            $(".home-display-joke").append(jokeItem);
         }
     }
+    $("#loading").hide();
 }
 
 function daddyFetch() {
@@ -144,6 +144,7 @@ function daddyAppendToPage(response) {
         $(jokeItem).append("<p>" + jokeToPost + "</p>");
         $(".home-display-joke").append(jokeItem);
     }
+    $("#loading").hide();
 }
 
 function checkStatus(response) {
