@@ -40,9 +40,7 @@ body {
     flex-direction: row;
     height: 6vh;
     background-color: #f1a5a5;
-    a {
-        font-size: 90%;
-    }
+    font-size: 80%;
     a:hover {
         background-color: #ddd;
         color: black;
@@ -72,18 +70,35 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 40%;
-    
+    .home-display-joke {
+        @extend %flex-message;
+        flex-flow: column wrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        background-color:aqua;
+        height: 90px;
+    }
+
+    .chosen-joke {
+        @extend %flex-message;
+        align-items: center;
+        justify-content: center;
+    }
+
 }
 
 
 //if desktop do this..
 @media all and (min-width: 600px) {     
     body {
-        font-size: 200%;
+        font-size: 2em;
     }
 
     .body-container {
-        margin-top: 10%;
+        margin-top: 0;
     }
+
+    // p {
+    //     font-size: 2vw;
+    // }
 }  
