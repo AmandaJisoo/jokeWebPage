@@ -25,31 +25,32 @@ html {
     height: 100%;
 }
 
-.topnav-container {
+
+.topnav {
+    //debugging
     @extend %flex-message;
-    flex-grow: 1;
     flex-direction: row;
-    .topnav {
-        //debugging
-        flex-grow: 1;
-        background-color: #f1a5a5;
-        a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+    height: 5vh;
+    // flex-grow: 4;
+    background-color: #f1a5a5;
+    a:hover {
+        background-color: #ddd;
+        color: black;
     }
-
 }
-
 
 
 
 .title {
-    font-size: 8%;
-    // margin-top: 30%;
+    font-size: 4rem;
+    margin-top: 20%;
     text-align: center;
 }
 
+
+.intro-state {
+    text-align: center;
+}
 form {
     display: block;
     text-align: center;
