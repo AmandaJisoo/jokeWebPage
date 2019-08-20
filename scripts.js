@@ -9,6 +9,7 @@ let numOfJoke = 10;
 let curJokeLink = null;
 let firstNumOfPageNav = 1;
 $(".pagination").hide();
+$("")
 $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
@@ -17,6 +18,8 @@ $("#prev-btn").click(changeToPrevPageNav);
 $(".user-choice").click(()=> {
     $(".user-choice").hide();
     $(".title").hide();
+    $(".explanation").hide();
+    // $(".lds-dual-ring").show();
 })    
 
 

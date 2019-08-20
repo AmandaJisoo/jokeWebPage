@@ -13,46 +13,50 @@
         <a href="#contact" class="link">Framework</a>
         <a href="#project" class="link">About Project</a>
     </nav>
-    <h1 class="title joke-option">
-      Daily Joke
-    </h1>
-    <p class ="intro-state">
-      This is a website where you can checkout jokes.
-      Chuck Norris joke and Daddy jokes are avilable.
-    </p>
-    <form>
+    <!-- give div to entire container -->
+    <div class="body-container">
+      <h1 class="title joke-option">
+        Daily Joke
+      </h1>
+      <p class ="explanation">
+        This is a website where you can checkout jokes.
+       <br> Chuck Norris joke and Daddy jokes are avilable.
+      </p>
+      <form>
         <div class= "user-choice">
-            <legend class="option-stat">Choose a Joke Type:</legend><br>
-            <label for="icndb" class="radio-choice">
-            <input type="radio" name="radio-choice" id="icndb"/>
-            Joke Type 1
-            </label>
-            <label for="daddy" class="radio-choice">
-            <input type="radio" name="radio-choice" id="daddy"/>
-            Joke Type 2
+          <legend class="option-stat">Choose a Joke Type:</legend><br>
+          <label for="icndb" class="radio-choice">
+          <input type="radio" name="radio-choice" id="icndb"/>
+          Joke Type 1
           </label>
+          <label for="daddy" class="radio-choice">
+          <input type="radio" name="radio-choice" id="daddy"/>
+          Joke Type 2
+            </label>
         </div>
-    </form>
-    <div class ="home-display-joke"></div>
-    <nav>
-        <ul class="pagination">
-          <li class="page-item arrow-btn">
-            <a class="page-link" id="prev-btn" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          <li class="page-item page-btn" id="1-page-btn"><a class="page-link" href="#">1</a></li>
-          <li class="page-item page-btn" id="2-page-btn"><a class="page-link" href="#">2</a></li>
-          <li class="page-item page-btn last-btn" id="3-page-btn"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" id="next-btn" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-    </nav>
+      </form>
+      <img src="img/load.gif" alt="loading-animation" ic="loading">
+      <div class ="home-display-joke"></div>
+      <nav>
+          <ul class="pagination">
+            <li class="page-item arrow-btn">
+              <a class="page-link" id="prev-btn" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+              </a>
+            </li>
+            <li class="page-item page-btn" id="1-page-btn"><a class="page-link" href="#">1</a></li>
+            <li class="page-item page-btn" id="2-page-btn"><a class="page-link" href="#">2</a></li>
+            <li class="page-item page-btn last-btn" id="3-page-btn"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" id="next-btn" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+              </a>
+            </li>
+          </ul>
+      </nav>
+  </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="scripts.js"></script>
 </body>
