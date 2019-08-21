@@ -56,6 +56,7 @@ function checkJokeTypeForFetch() {
 }
 
 function changeToNextPageNav(event) {
+    $("#loading").show();
     $(".page-btn").remove();
     $(".chosen-joke").remove();
     firstNumOfPageNav += 3;
@@ -71,6 +72,7 @@ function changeToNextPageNav(event) {
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
+    $("#loading").show();
     if (firstNumOfPageNav >= 4) {
         $(".chosen-joke").remove();
         $(".page-btn").remove();
@@ -98,6 +100,7 @@ function icndbFetch() {
         Promise.all(response).then(icndbAppendToPage);
     }))
     .then(()=> {
+        $("#loading").hide();
         $(".pagination").show();
     })
     .catch(console.error);
@@ -131,6 +134,7 @@ function daddyFetch() {
     .then((response) => {
         daddyAppendToPage(response);
     }).then(()=> {
+        $("#loading").hide();
         $(".pagination").show();
     })
     .catch(console.error);

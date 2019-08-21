@@ -65,6 +65,10 @@ form {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    #loading {
+        margin-top: 30%;
+    }
     .intro {
         @extend %flex-message;
         // margin-top: 30%;
@@ -96,13 +100,17 @@ form {
         justify-content: flex-start;
         align-items: flex-start;
         background-color:aqua;
-        height: 90px;
     }
 
     .chosen-joke {
         @extend %flex-message;
         align-items: center;
         justify-content: center;
+        border-width: 5px;
+        border-style: solid;
+        border-color: black;
+        width: 20%;
+        height: auto;
     }
 
 }
@@ -121,6 +129,10 @@ form {
         }
         .title {
             font-size: 3em;
+        }
+
+        #loading {
+            margin-top: 6%;
         }
     }
 }  
