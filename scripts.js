@@ -15,6 +15,7 @@ $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
 $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
+$(".page-btn").click(loadNextPage);
 $(".user-choice").click(()=> {
     $(".intro").hide();
     $(".user-choice").hide();
@@ -41,6 +42,7 @@ function renderHomePage(event) {
 
 function loadNextPage(event) {
     $(".pagination").hide();
+    $("#loading").show();
     $(".chosen-joke").remove();
     curPage = parseInt(event.currentTarget.innerText);
     console.log(typeof(curPage));
@@ -58,6 +60,7 @@ function checkJokeTypeForFetch() {
 
 function changeToNextPageNav(event) {
     $("#loading").show();
+    $(".pagination")
     $(".page-btn").remove();
     $(".chosen-joke").remove();
     firstNumOfPageNav += 3;
