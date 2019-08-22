@@ -26,18 +26,22 @@ html {
 }
 
 body {
-    height: 100%;
-    width: 100%;
     @extend %message-shared;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
 .topnav {
-    @extend %flex-message;
-    flex-direction: row;
-    height: 6vh;
     background-color: #f1a5a5;
     font-size: 80%;
-    // background-color: #ffa07a;
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    height:auto;
+    a {
+       
+    }
     a:hover {
         background-color: #ddd;
         color: black;
@@ -64,11 +68,12 @@ form {
 }
 
 .body-container {
+    
     @extend %flex-message;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    
     #loading {
         margin-top: 30%;
     }
@@ -97,15 +102,7 @@ form {
     }
 
     .home-display-joke {
-        // @extend %flex-message;
-        // justify-content: center;
-        // flex-flow: column wrap;
-        // align-content: center;
-        display: flex;
-        flex-flow: column wrap;
-        flex: 1 1 30%;
-        max-height: 100%;
-        // height: 40px;
+        flex-grow: 1;
     }
 
     .chosen-joke {
@@ -133,7 +130,7 @@ form {
 
     .body-container {
         .intro {
-            margin-top: 30%;
+            margin-top: 17%;
             flex-direction: row;
             max-width: 55%;
             max-height: auto;
