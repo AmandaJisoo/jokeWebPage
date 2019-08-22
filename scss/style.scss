@@ -1,3 +1,4 @@
+// TODO: change top nav color and grid
 $primary-color: #f1a5a5;
 
 %flex-message {
@@ -36,6 +37,7 @@ body {
     height: 6vh;
     background-color: #f1a5a5;
     font-size: 80%;
+    // background-color: #ffa07a;
     a:hover {
         background-color: #ddd;
         color: black;
@@ -53,6 +55,8 @@ form {
         width: 100%;
         height: 100%;
         background-color: white;
+        border-radius: 10px;
+        border: 3px solid #ff8f66;
     }
     .option-stat {
         font-size: 100%;
@@ -109,7 +113,7 @@ form {
         align-items: center;
         justify-content: center;
         border-style: solid;
-        border-color: black;
+        border: 3px solid #ff8f66;
         border-radius: 25px;
         background-color:white;
         max-width: 40%;
@@ -129,14 +133,13 @@ form {
 
     .body-container {
         .intro {
-            margin-top: 10%;
+            margin-top: 30%;
             flex-direction: row;
             max-width: 55%;
             max-height: auto;
         }
         .title {
             font-size: 3em;
-            // margin-right: -6%;
         }
 
         #loading {
