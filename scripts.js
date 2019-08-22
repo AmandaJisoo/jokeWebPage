@@ -16,6 +16,7 @@ $("#assport").click(renderHomePage);
 $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
 $(".user-choice").click(()=> {
+    $(".intro").hide();
     $(".user-choice").hide();
     $(".title").hide();
     $(".explanation").hide();
