@@ -105,7 +105,7 @@ form {
     }
 
     .chosen-joke {
-        @extend %flex-message;
+        // @extend %flex-message;
         align-items: center;
         justify-content: center;
         border-style: solid;
@@ -140,7 +140,7 @@ form {
         }
 
         #loading {
-            margin-top: 6%;
+            margin-top: 40%;
         }
     }
 

@@ -60,7 +60,7 @@ function checkJokeTypeForFetch() {
 
 function changeToNextPageNav(event) {
     $("#loading").show();
-    $(".pagination")
+    $(".pagination").hide();
     $(".page-btn").remove();
     $(".chosen-joke").remove();
     firstNumOfPageNav += 3;
@@ -77,6 +77,7 @@ function changeToNextPageNav(event) {
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
     $("#loading").show();
+    $(".pagination").hide();
     if (firstNumOfPageNav >= 4) {
         $(".chosen-joke").remove();
         $(".page-btn").remove();
@@ -152,7 +153,6 @@ function daddyAppendToPage(response) {
         $(jokeItem).append("<p>" + jokeToPost + "</p>");
         $(".home-display-joke").append(jokeItem);
     }
-    $("#loading").hide();
 }
 
 function checkStatus(response) {
