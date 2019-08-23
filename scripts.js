@@ -26,7 +26,7 @@ $(".user-option-container").click(()=> {
     $("#loading").show();
 })    
 
-
+//triggered 
 function resetToHome() {
 
 }

@@ -36,7 +36,7 @@ body {
 
 .topnav {
     // background-color: #f1a5a5;
-    font-size: 80%;
+    font-size: 100%;
     display: flex;
     justify-content: flex-end;
     // justify-content: space-between;
@@ -264,6 +264,11 @@ footer {
         font-size: 2em;
     }
 
+    .topnav {
+        // background-color: #f1a5a5;
+        font-size: 100%;
+    }
+    
     .body-container {
         .intro {
             margin-top: 20vh;
@@ -279,5 +284,8 @@ footer {
             margin-top: 10%;
         }
     }
-
 }  
+
+@media (min-width: 1200px) {
+    font-size: 400%;
+}
