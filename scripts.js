@@ -1,5 +1,6 @@
 "use strict";
 
+//TODO: figure out why the title is disappering
 let state = {curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1}; 
 const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
@@ -18,17 +19,23 @@ $("#prev-btn").click(changeToPrevPageNav);
 $(".page-btn").click(loadNextPage);
 $("#home").click(resetToHome);
 
+//how to stop fetching 
+
 $(".user-option-container").click(()=> {
-    $(".intro").hide();
-    $(".user-choice").hide();
     $(".title").hide();
-    $(".explanation").hide();
+    $(".intro").hide();
     $("#loading").show();
 })    
 
-//triggered 
+//triggered when the home on the navigation is clicked
+//changes the view of the screen as default first page
 function resetToHome() {
-
+    $(".home-display-joke").empty();
+    $(".home-display-joke").show();
+    $(".pagination").hide();
+    $("#loading").hide();
+    // $(".intro").show();
+    $(".intro").toggle();
 }
 
 
