@@ -16,6 +16,7 @@ $("#assport").click(renderHomePage);
 $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
 $(".page-btn").click(loadNextPage);
+$("#home").click(resetToHome);
 
 $(".user-option-container").click(()=> {
     $(".intro").hide();
@@ -26,9 +27,11 @@ $(".user-option-container").click(()=> {
 })    
 
 
+function resetToHome() {
 
-//Handles render 
-//only render when not click current page link
+}
+
+
 function renderHomePage(event) {
     $(".pagination").hide()
     $(".chosen-joke").remove();

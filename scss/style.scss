@@ -35,15 +35,18 @@ body {
 }
 
 .topnav {
-    background-color: #f1a5a5;
+    // background-color: #f1a5a5;
     font-size: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    // justify-content: space-between;
     width:100%;
     height:auto;
     padding: 2%;
     a {
-       
+       font-size: 120%;
+       color: white;
+        margin-right: 4%;
     }
     a:hover {
         background-color: #ddd;
