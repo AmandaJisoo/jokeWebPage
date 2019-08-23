@@ -123,6 +123,7 @@ form {
 }
 
 .user-option-container {
+    font-size: 1em;
     .containeruser-option-container ul{
         list-style: none;
         margin: 0;
@@ -131,12 +132,11 @@ form {
     }
       
     ul li{
-    color: #AAAAAA;
+    color: black;
     display: block;
     position: relative;
     float: left;
-    // width: 100%;
-    height: 100px;
+    height: 80px;
     border-bottom: 1px solid #333;
     }
     
@@ -150,7 +150,7 @@ form {
     position: relative;
     font-weight: 300;
     font-size: 1.35em;
-    padding: 25px 25px 25px 80px;
+    padding:15px 10px 1px 80px;
     margin: 10px auto;
     height: 30px;
     z-index: 9;
@@ -164,7 +164,7 @@ form {
     ul li .check{
     display: block;
     position: absolute;
-    border: 5px solid #AAAAAA;
+    border: 5px solid #36454F;
     border-radius: 100%;
     height: 25px;
     width: 25px;
@@ -198,11 +198,13 @@ form {
     }
     
     input[type=radio]:checked ~ .check::before{
-    background: #0DFF92;
+    background: black;
     }
     
     input[type=radio]:checked ~ label{
-    color: #0DFF92;
+        font-weight: bold;
+        color: white;
+    // #FF851B;
     }
 
 }

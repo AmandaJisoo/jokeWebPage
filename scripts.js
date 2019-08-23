@@ -10,7 +10,7 @@ let curJokeLink = null;
 let firstNumOfPageNav = 1;
 $(".pagination").hide();
 $("#loading").hide();
-$(".user-option-container").hide();
+// $(".user-option-container").hide();
 $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
