@@ -29,7 +29,8 @@ body {
     @extend %message-shared;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    position: relative;
+    min-height: 100vh;
 }
 
 .topnav {
@@ -70,11 +71,11 @@ form {
 }
 
 .body-container {
-    
     @extend %flex-message;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 2.5rem;
     #loading {
         margin-top: 30%;
     }
@@ -207,30 +208,16 @@ form {
 
 }
 
+
 footer {
-    // display:flex;
-    // flex-direction: row;
     position: absolute;
-    right: 0;
     bottom: 0;
-    left: 0;
-    padding: 1em;
-    height: 10%;
-    background-color: #efefef;
-    text-align: center;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1em;
-    background-color: #efefef;
-    text-align: center;
-    display: inline;
-    #personal-info {
-        display:inline;
-    }
+    width: 100%;
+    height: 2.5rem;  
     li {
-        list-style-type: none;
-    }
+        display: inline;
+        
+    }          /* Footer height */
   }
 
 
