@@ -10,7 +10,6 @@ let curJokeLink = null;
 let firstNumOfPageNav = 1;
 $(".pagination").hide();
 $("#loading").hide();
-// $(".user-option-container").hide();
 $("#icndb").click(renderHomePage);
 $("#daddy").click(renderHomePage);
 $("#assport").click(renderHomePage);
@@ -18,13 +17,12 @@ $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
 $(".page-btn").click(loadNextPage);
 
-$(".user-choice").click(()=> {
+$(".user-option-container").click(()=> {
     $(".intro").hide();
     $(".user-choice").hide();
     $(".title").hide();
     $(".explanation").hide();
     $("#loading").show();
-    $(".user-option-container").show();
 })    
 
 
