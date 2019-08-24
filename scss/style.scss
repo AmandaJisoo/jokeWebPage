@@ -214,6 +214,9 @@ form {
   }
   
   .note {
+    border-style: solid;
+    border-color: #f1a5a5;
+    background-color: white;
     color: #333;
     position: relative;
     position: relative;
@@ -224,7 +227,8 @@ form {
     margin-left: auto;
     padding: 5% 5%;
     font-family: Satisfy;
-    font-size: 30px;
+    font-size: 100%;
+    text-align: left;
     box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
   }
   
@@ -232,15 +236,6 @@ form {
     display: block;
     margin: 40px 0 0 0;
     text-align: right;
-  }
-
-  .yellow {
-    background: white;
-    -webkit-transform: rotate(2deg);
-    -moz-transform: rotate(2deg);
-    -o-transform: rotate(2deg);
-    -ms-transform: rotate(2deg);
-    transform: rotate(2deg);
   }
 
 
@@ -339,9 +334,9 @@ footer {
     }
 
     .paper {
-        margin-top: 15%;
+        margin-top: 3%;
         .note {
-            margin-top: 8%;
+            font-size: 90%;
         }
     }
 }  
@@ -364,7 +359,7 @@ footer {
          }
 
          .title {
-            font-size: 2.4em;
+            font-size: 2.8em;
          }
 
          .explanation {
@@ -372,6 +367,9 @@ footer {
             margin-right: 30%;
          }
 
+        #loading {
+            margin-top: 5%;
+        }
          .user-option-container  {
              font-size: 2em;
              ul li{
@@ -398,9 +396,9 @@ footer {
     }
 
     .paper {
-        margin-top: 15%;
+        margin-top: 5%;
         .note {
-            margin-top: 8%;
+            font-size: 180%;
         }
     }
 

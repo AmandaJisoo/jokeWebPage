@@ -42,6 +42,7 @@ function displayProjectInfo() {
     setTimeout(() => {
         $("#loading").hide();
         $(".paper").show();
+        $("footer").show();
     }, 500);
 }
 
