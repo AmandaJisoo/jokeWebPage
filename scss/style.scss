@@ -79,13 +79,11 @@ form {
     align-items: center;
     justify-content: center;
     padding-bottom: 2.5rem;
-    // display: flex;
-    // display: flex;
 
     #loading {
         margin-top: 30%;
     }
-    // TODO:check margin here
+
     .intro {
         @extend %flex-message;
         margin-top: 40%;
@@ -109,28 +107,27 @@ form {
     }
 
     .home-display-joke {
-        display: flex;
         flex-wrap: wrap;
-        width: 35%;
+        display: flex;
+        margin-bottom: 25px;
     }
 
     .chosen-joke {
         margin:2%;
         flex: 1;
         flex-basis: 40%;
-        flex-basis: 20%;
         border-style: solid;
         border: 3px solid #ff8f66;
         border-radius: 25px;
         background-color:white;
-        // max-width: 40%;
         margin-bottom: 10px;
-        padding: 14px;
-        // max-height: 100%;
+        padding: 10px;
+        font-size: 1em;
     }
 }
 
 .user-option-container {
+    margin-bottom: 6%;
     font-size: 1em;
     .user-option-container ul{
         list-style: none;
@@ -256,9 +253,6 @@ footer {
         padding: 10%;
         padding-bottom: 0;
     }
-    // .icons:hover {
-    //     color:yellow;
-    // }
   }
 
 
@@ -285,6 +279,20 @@ footer {
             max-width: 55%;
             max-height: auto;
         }
+
+        .chosen-joke {
+            margin:2%;
+            flex: 1;
+            flex-basis: 40%;
+            border-style: solid;
+            border: 3px solid #ff8f66;
+            border-radius: 25px;
+            background-color:white;
+            margin-bottom: 10px;
+            font-size: 1em;
+            padding: 10px;
+        }
+
         .title {
             font-size: 3em;
         }
@@ -297,12 +305,46 @@ footer {
 
 
 @media (min-width: 1440px) {
+    .topnav {
+        font-size: 1.8em;
+    }
+    .pagination {
+        font-size: 2.2em;
+    }
     .body-container {
         .intro {
+            margin-left:20%;
             margin-bottom: 0;
             margin-top: 10%;
             font-size: 200%;
+            font-size: 2.4em;
          }
+
+         .explanation {
+            font-size: 1em;
+            margin-right: 30%;
+         }
+
+         .user-option-container  {
+             font-size: 2em;
+         }
+         .home-display-joke {
+            margin-left: 30%;
+            margin-right: 30%;
+            flex-wrap: wrap;
+            display: flex;
+         }
+         .chosen-joke {
+            flex: 1;
+            flex-basis: 30%;
+            border-style: solid;
+            border: 3px solid #ff8f66;
+            border-radius: 25px;
+            background-color: white;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+            padding: 20px;
+        }
     }
 
     footer {
