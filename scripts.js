@@ -21,6 +21,7 @@ $(".page-btn").click(loadNextPage);
 $("#project-description").click(displayProjectInfo);
 $(".paper").hide();
 $(".user-option-container").click(hideHomeItems);   
+$("#home").click(resetToHome);
 
 function hideHomeItems() {
     console.log("isCalled");
@@ -48,7 +49,6 @@ function displayProjectInfo() {
 function resetToHome() {
     if (!isAtHome) {
         $(".home-display-joke").empty();
-        $(".home-display-joke").show();
         $(".user-option-container").show();
         $(".pagination").hide();
         $("#loading").hide();
@@ -140,8 +140,8 @@ function icndbFetch() {
     }))
     .then(()=> {
         $("#loading").hide();
-        $(".pagination").show();
         $("footer").show();
+        $(".pagination").show();
     })
     .catch(console.error);
 }
