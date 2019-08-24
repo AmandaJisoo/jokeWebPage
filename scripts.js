@@ -109,10 +109,10 @@ function changeToNextPageNav(event) {
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
-    $("footer").hide();
-    $("#loading").show();
-    $(".pagination").hide();
     if (firstNumOfPageNav >= 4) {
+        $("footer").hide();
+        $("#loading").show();
+        $(".pagination").hide();
         $(".chosen-joke").remove();
         $(".page-btn").remove();
         for (let i = 1; i <= 3; i++) {
