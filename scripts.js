@@ -1,6 +1,6 @@
 "use strict";
 
-//TODO: figure out why the title is disappering
+//TODO: figure out when alredy at home
 let state = {curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1}; 
 const ICNDB_URl = "http://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
@@ -9,6 +9,7 @@ let curPage = 1;
 let numOfJoke = 10;
 let curJokeLink = null;
 let firstNumOfPageNav = 1;
+let isAtHome = true;
 $(".pagination").hide();
 $("#loading").hide();
 $("#icndb").click(renderHomePage);
@@ -25,17 +26,20 @@ $(".user-option-container").click(()=> {
     $(".title").hide();
     $(".intro").hide();
     $("#loading").show();
+    isAtHome = false;
 })    
 
 //triggered when the home on the navigation is clicked
 //changes the view of the screen as default first page
 function resetToHome() {
-    $(".home-display-joke").empty();
-    $(".home-display-joke").show();
-    $(".pagination").hide();
-    $("#loading").hide();
-    $(".title").show();
-    $(".intro").toggle();
+    if (!isAtHome) {
+        $(".home-display-joke").empty();
+        $(".home-display-joke").show();
+        $(".pagination").hide();
+        $("#loading").hide();
+        $(".title").show();
+        $(".intro").toggle();
+    }
 }
 
 
