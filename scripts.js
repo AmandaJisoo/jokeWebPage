@@ -18,10 +18,7 @@ $("#assport").click(renderHomePage);
 $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
 $(".page-btn").click(loadNextPage);
-$("#home").click(resetToHome);
-// $(".about-project-background").hide();
- $("#project-description").click(displayProjectInfo);
-//how to stop fetching 
+$("#project-description").click(displayProjectInfo);
 $(".paper").hide();
 $(".user-option-container").click(hideHomeItems);   
 
