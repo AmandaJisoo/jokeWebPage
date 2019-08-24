@@ -34,7 +34,7 @@ function resetToHome() {
     $(".home-display-joke").show();
     $(".pagination").hide();
     $("#loading").hide();
-    // $(".intro").show();
+    $(".title").show();
     $(".intro").toggle();
 }
 
@@ -42,6 +42,7 @@ function resetToHome() {
 function renderHomePage(event) {
     $(".pagination").hide()
     $(".chosen-joke").remove();
+    $("footer").hide();
     if (event.target.id === "icndb") {
         curJokeLink = "icndb";
         icndbFetch();
@@ -56,8 +57,7 @@ function loadNextPage(event) {
     $("#loading").show();
     $(".chosen-joke").remove();
     curPage = parseInt(event.currentTarget.innerText);
-    console.log(typeof(curPage));
-    console.log(curPage);
+    $("footer").hide();
     checkJokeTypeForFetch();
 }
 
@@ -74,6 +74,7 @@ function changeToNextPageNav(event) {
     $(".pagination").hide();
     $(".page-btn").remove();
     $(".chosen-joke").remove();
+    $("footer").hide();
     firstNumOfPageNav += 3;
      for (let i = 2; i >= 0; i--) {
         let pageBtn = $("<li class='page-item page-btn' id='" + (firstNumOfPageNav + i) + "-page-btn'><a class='page-link' href='#'>" + (firstNumOfPageNav + i) +  "</a></li>");
@@ -87,6 +88,7 @@ function changeToNextPageNav(event) {
 
 //shouldn't fetch again if is same page
 function changeToPrevPageNav(event) {
+    $("footer").hide();
     $("#loading").show();
     $(".pagination").hide();
     if (firstNumOfPageNav >= 4) {
@@ -118,6 +120,7 @@ function icndbFetch() {
     .then(()=> {
         $("#loading").hide();
         $(".pagination").show();
+        $("footer").show();
     })
     .catch(console.error);
 }
@@ -152,6 +155,7 @@ function daddyFetch() {
     }).then(()=> {
         $("#loading").hide();
         $(".pagination").show();
+        $("footer").show();
     })
     .catch(console.error);
 }
