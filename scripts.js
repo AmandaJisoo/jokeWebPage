@@ -51,10 +51,12 @@ function resetToHome() {
     if (!isAtHome) {
         $(".home-display-joke").empty();
         $(".home-display-joke").show();
+        $(".user-option-container").show();
         $(".pagination").hide();
         $("#loading").hide();
         $(".title").show();
         $(".intro").toggle();
+        $(".paper").hide();
         isAtHome = true;
     }
 }

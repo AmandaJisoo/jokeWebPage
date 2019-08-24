@@ -208,7 +208,7 @@ form {
     }
 }
 
-.quote-container {
+.paper {
     margin-top: 30%;
     position: relative;
   }
@@ -218,7 +218,11 @@ form {
     position: relative;
     position: relative;
     width: 80%;
-    margin: 0 auto;
+    height: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    padding: 5% 5%;
     font-family: Satisfy;
     font-size: 30px;
     box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
@@ -231,40 +235,12 @@ form {
   }
 
   .yellow {
-    background: #eae672;
+    background: white;
     -webkit-transform: rotate(2deg);
     -moz-transform: rotate(2deg);
     -o-transform: rotate(2deg);
     -ms-transform: rotate(2deg);
     transform: rotate(2deg);
-  }
-
-
-  .pin {
-    background-color: #aaa;
-    display: block;
-    height: 32px;
-    width: 2px;
-    position: absolute;
-    left: 50%;
-    top: -16px;
-    z-index: 1;
-  }
-
-  .pin:after {
-    background-color: #A31;
-    background-image: radial-gradient(25% 25%, circle, hsla(0,0%,100%,.3), hsla(0,0%,0%,.3));
-    border-radius: 50%;
-    box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.1),
-                inset 3px 3px 3px hsla(0,0%,100%,.2),
-                inset -3px -3px 3px hsla(0,0%,0%,.2),
-                23px 20px 3px hsla(0,0%,0%,.15);
-    content: '';
-    height: 12px;
-    left: -5px;
-    position: absolute;
-    top: -10px;
-    width: 12px;
   }
 
 
@@ -312,7 +288,6 @@ footer {
 
 
   
-
 
 //if desktop do this..
 //not working at all
@@ -363,8 +338,11 @@ footer {
         }
     }
 
-    .quote-container {
+    .paper {
         margin-top: 15%;
+        .note {
+            margin-top: 8%;
+        }
     }
 }  
 
@@ -419,9 +397,13 @@ footer {
         }
     }
 
-    .quote-container {
+    .paper {
         margin-top: 15%;
+        .note {
+            margin-top: 8%;
+        }
     }
+
 
     footer {
         .icons {
