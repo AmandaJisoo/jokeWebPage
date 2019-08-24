@@ -35,11 +35,9 @@ body {
 }
 
 .topnav {
-    // background-color: #f1a5a5;
     font-size: 100%;
     display: flex;
     justify-content: flex-end;
-    // justify-content: space-between;
     width:100%;
     height:auto;
     padding: 2%;
@@ -81,13 +79,14 @@ form {
     align-items: center;
     justify-content: center;
     padding-bottom: 2.5rem;
+
     #loading {
         margin-top: 30%;
     }
-
+    // TODO:check margin here
     .intro {
         @extend %flex-message;
-        margin-top: 50%;
+        margin-top: 40%;
         flex-direction: row;
         align-items: bottom;
         max-width: 67%;
@@ -112,9 +111,6 @@ form {
     }
 
     .chosen-joke {
-        // @extend %flex-message;
-        align-items: center;
-        justify-content: center;
         border-style: solid;
         border: 3px solid #ff8f66;
         border-radius: 25px;
@@ -123,13 +119,12 @@ form {
         margin-bottom: 10px;
         padding: 14px;
         max-height: 100%;
-        // align-content: space-between;
     }
 }
 
 .user-option-container {
     font-size: 1em;
-    .containeruser-option-container ul{
+    .user-option-container ul{
         list-style: none;
         margin: 0;
         padding: 0;
@@ -207,7 +202,6 @@ form {
     input[type=radio]:checked ~ label{
         font-weight: bold;
         color: white;
-    // #FF851B;
     }
     margin-right:40px;
 
@@ -260,20 +254,21 @@ footer {
 
 
 //if desktop do this..
-@media all and (min-width: 600px) {     
+//not working at all
+
+@media (min-width: 600px) and (max-width : 1024px) {     
     body {
         font-size: 2em;
     }
 
     .topnav {
-        // background-color: #f1a5a5;
         font-size: 100%;
     }
     
     .body-container {
         .intro {
-            // align-items: center;
-            // margin-top: 70vh;
+            font-size: 100%;
+            margin-top: 25%;
             flex-direction: row;
             max-width: 55%;
             max-height: auto;
@@ -288,6 +283,17 @@ footer {
     }
 }  
 
-@media (min-width: 1200px) {
-    font-size: 400%;
-}
+
+@media (min-width: 1440px) {
+    .body-container {
+        .intro {
+            margin-bottom: 0;
+            margin-top: 15%;
+            font-size: 200%;
+         }
+    }
+    
+  }
+
+
+
