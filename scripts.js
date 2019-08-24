@@ -19,15 +19,31 @@ $("#next-btn").click(changeToNextPageNav);
 $("#prev-btn").click(changeToPrevPageNav);
 $(".page-btn").click(loadNextPage);
 $("#home").click(resetToHome);
-
+// $(".about-project-background").hide();
+ $("#project-description").click(displayProjectInfo);
 //how to stop fetching 
+$(".paper").hide();
+$(".user-option-container").click(hideHomeItems);   
 
-$(".user-option-container").click(()=> {
+function hideHomeItems() {
+    console.log("isCalled");
     $(".title").hide();
     $(".intro").hide();
     $("#loading").show();
     isAtHome = false;
-})    
+}
+function displayProjectInfo() {
+    hideHomeItems();
+    $(".user-option-container").hide();
+    $(".home-display-joke").empty();
+    $(".home-display-joke").hide();
+    $(".pagination").hide();
+    $("footer").hide();
+    setTimeout(() => {
+        $("#loading").hide();
+        $(".paper").show();
+    }, 500);
+}
 
 //triggered when the home on the navigation is clicked
 //changes the view of the screen as default first page
@@ -39,6 +55,7 @@ function resetToHome() {
         $("#loading").hide();
         $(".title").show();
         $(".intro").toggle();
+        isAtHome = true;
     }
 }
 
