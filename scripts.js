@@ -20,10 +20,10 @@ $("#prev-btn").click(changeToPrevPageNav);
 $(".page-btn").click(loadNextPage);
 $("#project-description").click(displayProjectInfo);
 $(".paper").hide();
+$(".footer").hide();
 $("#home").click(resetToHome);
 
 function hideHomeItems() {
-    $("input[type=radio]").css("checked", "none");
     $(".title").hide();
     $(".intro").hide();
     $("#loading").show();
@@ -40,12 +40,18 @@ function displayProjectInfo() {
         $("#loading").hide();
         $(".paper").show();
         $("footer").show();
-    }, 500);
+    }, 1000);
 }
 
 //triggered when the home on the navigation is clicked
 //changes the view of the screen as default first page
 function resetToHome() {
+    location.reload();
+    setTimeout(restToHomeHelper, 500);
+}
+
+function restToHomeHelper() {
+    $(".user-option-container").show();
     $(".home-display-joke").empty();
     if (!isAtHome) {
         $(".user-option-container").show();
