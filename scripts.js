@@ -20,8 +20,12 @@ $("#prev-btn").click(changeToPrevPageNav);
 $(".page-btn").click(loadNextPage);
 $("#project-description").click(displayProjectInfo);
 $(".paper").hide();
-$(".footer").hide();
+// $("footer").hide();
 $("#home").click(resetToHome);
+
+// $(images).on('load', () => {
+//     $("footer").show();
+// });
 
 function hideHomeItems() {
     $(".title").hide();
@@ -60,6 +64,7 @@ function restToHomeHelper() {
         $(".title").show();
         $(".intro").toggle();
         $(".paper").hide();
+        $("footer").show();
         isAtHome = true;
     }
 }
