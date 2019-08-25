@@ -243,11 +243,10 @@ footer {
     display: flex;
     flex-direction: row;
     position: relative;
-    align-items: center;
     justify-content: center;
     bottom: 0;
     width: 100%;
-    
+    align-items: baseline;
     .icon {
         margin: 1%;
     }
@@ -264,7 +263,7 @@ footer {
     }
     .icons2 {
         display: inline-block;
-        font-size: 80%;
+        font-size:82%;
     }
     
     .fa-github-square:before {
@@ -274,7 +273,9 @@ footer {
 
     .fa-user-circle:before {
         content: "\f2bd";
-        font-size: 103%;
+        font-size: 105%;
+        // margin--right: 10%;
+        margin-right: 11px;
     }
 
     .fa-linkedin-in:before {
@@ -283,6 +284,7 @@ footer {
         border-style: solid;
         padding: 10%;
         padding-bottom: 0;
+        font-size: 100%;
     }
   }
 
@@ -356,10 +358,11 @@ footer {
     }
 
     .body-container {
+
         .intro {
-            margin-left:40%;
+            margin-left: 22%;
             margin-bottom: 0;
-            margin-top: 10%;
+            margin-top: 5%;
             font-size: 200%;
          }
 
@@ -375,6 +378,7 @@ footer {
         #loading {
             margin-top: 5%;
         }
+
          .user-option-container  {
              font-size: 2em;
              ul li{
@@ -412,16 +416,16 @@ footer {
         .icons {
             margin-right: 1rem;
             display: inline-block;
-            font-size: 200%;
+            // font-size: 80px;
+            font-size: 40px;
         }
     
         .resume-page {
-            font-size: 550%;
-            padding-bottom: 12px;
+            font-size: 80px;
         }
         .icons2 {
             display: inline-block;
-            font-size: 140%;
+            font-size: 30px;
         }    
     }
 }
