@@ -43,11 +43,11 @@ body {
     padding: 2%;
     a {
        font-size: 120%;
-       color: white;
+       color: black;
         margin-right: 4%;
     }
     a:hover {
-        color: black;
+        color: white;
         font-weight: bold;
     }
 }
@@ -187,8 +187,6 @@ form {
     border-radius: 100%;
     height: 15px;
     width: 15px;
-    top: 5px;
-        left: 5px;
     margin: auto;
         transition: background 0.25s linear;
         -webkit-transition: background 0.25s linear;
@@ -199,7 +197,7 @@ form {
     }
     
     input[type=radio]:checked ~ .check::before{
-    background: black;
+        background: black;
     }
     
     input[type=radio]:checked ~ label{
@@ -415,13 +413,13 @@ footer {
     footer {
         .icons {
             margin-right: 1rem;
-            display: inline-block;
-            // font-size: 80px;
+            display: inline-block;;
             font-size: 40px;
         }
     
         .resume-page {
-            font-size: 80px;
+            margin-left: 2%;
+            font-size: 650%;
         }
         .icons2 {
             display: inline-block;
