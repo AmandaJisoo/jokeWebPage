@@ -20,16 +20,15 @@ $("#prev-btn").click(changeToPrevPageNav);
 $(".page-btn").click(loadNextPage);
 $("#project-description").click(displayProjectInfo);
 $(".paper").hide();
-$(".user-option-container").click(hideHomeItems);   
 $("#home").click(resetToHome);
 
 function hideHomeItems() {
-    console.log("isCalled");
     $(".title").hide();
     $(".intro").hide();
     $("#loading").show();
     isAtHome = false;
 }
+
 function displayProjectInfo() {
     hideHomeItems();
     $(".user-option-container").hide();
@@ -61,9 +60,13 @@ function resetToHome() {
 
 
 function renderHomePage(event) {
+    hideHomeItems();
     $(".pagination").hide()
     $(".chosen-joke").remove();
+    console.log("rendered");
+    $(".home-display-joke").empty();
     $("footer").hide();
+    $("home-display-joke").hide();
     if (event.target.id === "icndb") {
         curJokeLink = "icndb";
         icndbFetch();
