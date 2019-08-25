@@ -23,6 +23,7 @@ $(".paper").hide();
 $("#home").click(resetToHome);
 
 function hideHomeItems() {
+    $("input[type=radio]").css("checked", "none");
     $(".title").hide();
     $(".intro").hide();
     $("#loading").show();
@@ -33,7 +34,6 @@ function displayProjectInfo() {
     hideHomeItems();
     $(".user-option-container").hide();
     $(".home-display-joke").empty();
-    $(".home-display-joke").hide();
     $(".pagination").hide();
     $("footer").hide();
     setTimeout(() => {
@@ -46,8 +46,8 @@ function displayProjectInfo() {
 //triggered when the home on the navigation is clicked
 //changes the view of the screen as default first page
 function resetToHome() {
+    $(".home-display-joke").empty();
     if (!isAtHome) {
-        $(".home-display-joke").empty();
         $(".user-option-container").show();
         $(".pagination").hide();
         $("#loading").hide();
