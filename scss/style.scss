@@ -35,6 +35,11 @@ body {
     min-height: 100vh;
 }
 
+
+p {
+    text-align: left;
+}
+
 .topnav {
     font-size: 100%;
     display: flex;
@@ -97,7 +102,7 @@ form {
         margin: 0; 
         padding: 0; 
         border: 0;
-        font-size: 2em;
+        font-size: 2.8em;
         margin-right: 2.5%;
     }
 
@@ -210,7 +215,7 @@ form {
 }
 
 .paper {
-    margin-top: 30%;
+    margin-top: 10%;
     position: relative;
     .note {
         border-style: solid;
@@ -218,14 +223,12 @@ form {
         background-color: white;
         color: #333;
         position: relative;
-        position: relative;
         width: 80%;
         height: auto;
         margin-right: auto;
         margin-bottom: 0px;
         margin-left: auto;
         padding: 5% 5%;
-        font-family: Satisfy;
         font-size: 100%;
         text-align: left;
         box-shadow: 0 10px 10px 2px rgba(0,0,0,0.3);
@@ -240,7 +243,7 @@ form {
 }
   
 footer {
-    font-style: sans-serif;
+    margin-top: -10%;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -253,7 +256,7 @@ footer {
         margin: 1%;
     }
  
-    .icons {
+    .git-hub-icon {
         margin-right: 1rem;
         display: inline-block;
         font-size: 110%;
@@ -263,30 +266,21 @@ footer {
         font-size: 300%;
         padding-bottom: 12px;
     }
-
-    .icons2 {
-        display: inline-block;
-        font-size:82%;
-    }
     
     .fa-github-square:before {
         content: "\f092";
-        color: white;
+        color: black;
+    }
+
+    #git-hub a :hover {
+        content: "\f092";
+        background-color: gray !important;
     }
 
     .fa-user-circle:before {
         content: "\f2bd";
         font-size: 105%;
         margin-right: 11px;
-    }
-
-    .fa-linkedin-in:before {
-        content: "\f0e1";
-        color: #007bb6;
-        border-style: solid;
-        padding: 10%;
-        padding-bottom: 0;
-        font-size: 100%;
     }
 }
 
@@ -304,7 +298,6 @@ footer {
         .intro {
             font-size: 100%;
             margin-top: 25%;
-            flex-direction: row;
             max-width: 55%;
             max-height: auto;
         }
@@ -320,7 +313,7 @@ footer {
         }
 
         .title {
-            font-size: 3em;
+            font-size: 2.8em;
         }
 
         #loading {
@@ -329,10 +322,14 @@ footer {
     }
 
     .paper {
-        margin-top: 25%;
+        margin-top: 5%;
         .note {
             font-size: 110%;
         }
+    }
+
+    footer {
+        margin-top: -5%;
     }
 }  
 
@@ -347,7 +344,7 @@ footer {
 
     .body-container {
         .intro {
-            margin-left: 22%;
+            margin-left: 8%;
             margin-bottom: 0;
             margin-top: 5%;
             font-size: 200%;
@@ -363,30 +360,30 @@ footer {
          }
 
         #loading {
-            margin-top: 12%;
+            margin-top: 8%;
         }
 
-         .user-option-container  {
+        .user-option-container  {
              font-size: 2em;
              ul li{
                 height: 170px;
             }
-         }
-         .home-display-joke {
-            margin-left: 30%;
-            margin-right: 30%;
+        }
+        .home-display-joke {
+            margin-left: 15%;
+            margin-right: 15%;
             flex-wrap: wrap;
             display: flex;
          }
          .chosen-joke {
             flex: 1;
-            flex-basis: 30%;
+            flex-basis: 22%;
             border-style: solid;
             border: 3px solid #ff8f66;
             border-radius: 25px;
             background-color: white;
             margin-bottom: 10px;
-            font-size: 1.5em;
+            font-size: 1.8em;
             padding: 20px;
         }
     }
@@ -394,13 +391,15 @@ footer {
     .paper {
         margin-top: 5%;
         .note {
-            font-size: 180%;
+            font-size: 2.1em;
+            padding: 2% 2%;
         }
     }
 
 
     footer {
-        .icons {
+        margin-top: -1%;
+        .git-hub-icon{
             margin-right: 1rem;
             display: inline-block;;
             font-size: 40px;
