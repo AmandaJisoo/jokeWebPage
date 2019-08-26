@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.min.css">  
+    <link rel="icon" type="image/x-icon" href="img/favicon.png">   
+    <meta name="author" content="Amanda Park">
+    <meta name="description" content="Inspiring Jokes">
+    <title>Random Joke</title>
+</head>
+<body>
+    <nav class="topnav">
+        <a href="#home" id="home">Home</a>
+        <a href="#project" id="project-description">About Project</a>
+    </nav>
+    <div class="body-container">
+      <div class="intro">
+        <h1 class="title joke-option">
+          Daily<br>Joke
+        </h1>
+        <p class ="explanation">
+          Explore your passion towards jokes.
+        <br> Chuck Norris and Daddy jokes are available.
+        </p>
+    </div>
+      <form>
+        <div class="user-option-container">
+          <ul>
+            <li>
+              <input type="radio" class="joke-type" id="icndb" name="selector"/>
+              <label for="icndb">Chuck<br> Norris</label>       
+              <div class="check"></div>
+            </li>       
+            <li>
+              <input type="radio" class="joke-type" id="daddy" name="selector"/>
+              <label for="daddy">Daddy <br>Joke</label>              
+              <div class="check"></div>
+            </li>
+          </ul>
+        </div>
+    </form>
+    <div class="paper">
+      <p class="note yellow">
+          I used to be called football as a kid because I was making a joke too often.  This website is designed to share my love of puns. 
+          You can check out daddy jokes and jokes about Chuck Norris, martial arts master on this website.
+          Through this project, I learned how to effectively utilize api and to handle Response object.<br>
+          To checkout more project, please click the middle icon on the bottom<br>
+          <strong> Lastly, thanks to amazing mentor, Hao Chen.</strong>
+        <cite class="author">-Amanda Park-</cite>
+      </p>
+    </div>   
+      <img src="img/load.gif" alt="loading-animation" id="loading">
+      <div class ="home-display-joke"></div>
+    <nav>
+      <ul class="pagination">
+        <li class="page-item arrow-btn">
+          <a class="page-link" id="prev-btn" href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item page-btn" id="1-page-btn"><a class="page-link" href="#">1</a></li>
+        <li class="page-item page-btn" id="2-page-btn"><a class="page-link" href="#">2</a></li>
+        <li class="page-item page-btn last-btn" id="3-page-btn"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" id="next-btn" href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <footer>
+    <div class="git-hub-icon icon">
+      <a href="https://github.com/AmandaJisoo" id="git-hub"><i class="fal fab fa-github-square fa-3x"></i> </a>                
+    </div>
+    <div class="resume-page icon">
+      <a href=""><i class="fas fa-user-circle"></i></a>
+   </div> 
+  </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/17badcd073.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
