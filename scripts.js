@@ -1,3 +1,4 @@
+//use vuew now
 "use strict";
 
 let state = {curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1}; 
