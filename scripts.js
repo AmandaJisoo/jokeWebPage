@@ -1,7 +1,7 @@
 "use strict";
 
 let state = {curPage: 1, numOfJoke: 10, curJokeLink : null, firstNumOfPageNav: 1}; 
-const ICNDB_URl = "http://api.icndb.com/jokes/";
+const ICNDB_URl = "https://api.icndb.com/jokes/";
 const DADDY_URL = "https://icanhazdadjoke.com/";
 
 let curPage = 1; 

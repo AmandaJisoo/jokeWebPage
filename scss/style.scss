@@ -285,7 +285,7 @@ footer {
 }
 
 
-@media (min-width: 600px) and (max-width : 1024px) {     
+@media (min-width: 600px) and (max-width : 1200px) {     
     body {
         font-size: 2em;
     }
@@ -296,6 +296,7 @@ footer {
     
     .body-container {
         .intro {
+            margin-left: 10px;
             font-size: 100%;
             margin-top: 25%;
             max-width: 55%;
@@ -334,7 +335,7 @@ footer {
 }  
 
 
-@media (min-width: 1025px) {
+@media (min-width: 1201px) {
     .topnav {
         font-size: 1.8em;
     }
@@ -344,7 +345,7 @@ footer {
 
     .body-container {
         .intro {
-            margin-left: 8%;
+            margin-left: 11em;
             margin-bottom: 0;
             margin-top: 5%;
             font-size: 200%;
